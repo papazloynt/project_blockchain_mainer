@@ -9,21 +9,21 @@ generate: install-deps .generate
 
 .PHONY: .generate_structs
 .generate_structs:
-	mkdir -p pkg/echo
+	mkdir -p pkg/sugest
 	protoc -I protos \
-		--go_out ./pkg/echo \
+		--go_out ./pkg/sugest \
 		--go_opt plugins=grpc \
 		--go_opt paths=source_relative \
-		protos/echo.proto
+		protos/sugest.proto
 
 .PHONY: .generate_service
 .generate_service:
-	mkdir -p pkg/echo
-	protoc -I protos --grpc-gateway_out ./pkg/echo \
+	mkdir -p pkg/sugest
+	protoc -I protos --grpc-gateway_out ./pkg/sugest \
 			 --grpc-gateway_opt=logtostderr=true \
 			 --grpc-gateway_opt=paths=source_relative \
 			 --grpc-gateway_opt=generate_unbound_methods=true \
-		protos/echo.proto
+		protos/sugestgi.proto
 
 .PHONY: build
 build: generate .build
@@ -115,7 +115,7 @@ install-cmake: install-brew .install-cmake
 .install-cmake:
 	which cmake || brew install cmake
 
-GRPC_CPP_PLUGIN_EXISTS := $(shell PATH=$PATH:$HOME/bin which grpc_cpp_plugin 2> /dev/null)
+GRPC_CPP_PLUGIN_EXISTS := $(shell PATH=$$PATH:$$HOME/bin which grpc_cpp_plugin 2> /dev/null)
 
 .PHONY: .install-cpp-deps
 .install-cpp-deps:

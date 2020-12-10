@@ -1,22 +1,22 @@
 syntax = "proto3";
 
-package echo;
+package sugest;
 
 import "google/api/annotations.proto";
 
-service Echo {
-  rpc Hello(HelloRequest) returns (HelloResponse) {
+service Sugest{
+  rpc Sugest(SugestRequest) returns (SugestResponse) {
     option (google.api.http) = {
-      post: "/v1/hello"
+      post: "/v1/sugest"
       body: "*"
     };
   }
 }
 
-message HelloRequest {
+message SugestRequest {
   string data = 1;
 }
 
-message HelloResponse {
+message SugestResponse {
   string data = 1;
 }

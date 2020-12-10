@@ -6,7 +6,7 @@
 #include <grpcpp/health_check_service_interface.h>
 #include <grpcpp/ext/proto_server_reflection_plugin.h>
 
-#include "echo.grpc.pb.h"
+#include "sugest.grpc.pb.h"
 
 using grpc::Server;
 using grpc::ServerBuilder;
