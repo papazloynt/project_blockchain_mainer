@@ -9,21 +9,21 @@ generate: install-deps .generate
 
 .PHONY: .generate_structs
 .generate_structs:
-	mkdir -p pkg/sugest
+	mkdir -p pkg/echo
 	protoc -I protos \
-		--go_out ./pkg/sugest \
+		--go_out ./pkg/echo \
 		--go_opt plugins=grpc \
 		--go_opt paths=source_relative \
-		protos/sugest.proto
+		protos/echo.proto
 
 .PHONY: .generate_service
 .generate_service:
-	mkdir -p pkg/sugest
-	protoc -I protos --grpc-gateway_out ./pkg/sugest \
+	mkdir -p pkg/echo
+	protoc -I protos --grpc-gateway_out ./pkg/echo \
 			 --grpc-gateway_opt=logtostderr=true \
 			 --grpc-gateway_opt=paths=source_relative \
 			 --grpc-gateway_opt=generate_unbound_methods=true \
-		protos/sugestgi.proto
+		protos/echo.proto
 
 .PHONY: build
 build: generate .build
