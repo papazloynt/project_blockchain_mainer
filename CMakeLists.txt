@@ -16,6 +16,7 @@ include("tools/gate/cmake/HunterGate.cmake")
 HunterGate(
   URL "https://github.com/cpp-pm/hunter/archive/v0.23.278.tar.gz"
   SHA1 "35fa55bc1dfcf9f4d7264f8bb26cd1759ce1ae07"
+  FILEPATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/config.cmake"
 )
 
 project(echoservice)
@@ -31,6 +32,7 @@ find_package(gRPC CONFIG REQUIRED)
 
 hunter_add_package(Protobuf)
 find_package(Protobuf CONFIG REQUIRED)
+
 
 set(PROTO_GENERATED_SOURCES
   "${CMAKE_CURRENT_BINARY_DIR}/echo.pb.cc"

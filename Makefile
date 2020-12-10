@@ -88,9 +88,10 @@ install-go-deps: install-golang .install-go-deps
 
 .PHONY: .install-go-deps
 .install-go-deps:
-	ls go.mod || go mod init
+	ls go.mod || go mod init goelster
 	go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
-	go get -u github.com/golang/protobuf/{proto,protoc-gen-go}
+	go get -u github.com/golang/protobuf/proto
+	go get -u github.com/golang/protobuf/protoc-gen-go
 	go install google.golang.org/grpc/cmd/protoc-gen-go-grpc
 
 .PHONY: install-cpp-deps
@@ -133,13 +134,13 @@ ifndef GRPC_CPP_PLUGIN_EXISTS
 endif
 
 .PHONY: config
-config: install-gsed .config
+config: install-sed .config
 
-.PHONY: install-gsed
-install-gsed:
-	which gsed || brew install gsed
+.PHONY: install-sed
+install-sed:
+	which sed || brew install sed
 
 GO_PACKAGE_PATH:=$(shell pwd | sed -e "s,.*go\/src/github.com/\(.*\),\1,")
 .PHONY: .config
 .config:
-	gsed -i 's,bmstu-iu8-cpp-sem-3/lab-07-grpc,$(GO_PACKAGE_PATH),' gateway.go
+	sed -i 's,bmstu-iu8-cpp-sem-3/lab-07-grpc,$(GO_PACKAGE_PATH),' gateway.go
