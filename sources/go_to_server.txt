@@ -1,0 +1,29 @@
+curl -o myfile.json --header "Content-Type: application/json" \
+  --request POST \
+  --data '
+{
+  "input": "hel"
+}
+  ' \
+  http://localhost:9090/v1/suggest 
+
+
+
+
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '
+{
+  "input": "hel"
+}
+   ' \
+  http://localhost:8080/v1/suggest 
+
+
+
+
+
+
+
+
+
