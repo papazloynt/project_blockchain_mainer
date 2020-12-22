@@ -38,5 +38,3 @@ int main(int argc, char** argv) {
   RunServer();
   return 0;
 }
-//Почему код 15?
-//Почему не работает вывод

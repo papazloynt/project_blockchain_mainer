@@ -1,7 +1,7 @@
 // Copyright 2020 Chastikov Alexander cool.chastikov53@gmail.com
 
-#ifndef SUGGESTSERVICE_SUGGESTIONS_H
-#define SUGGESTSERVICE_SUGGESTIONS_H
+#ifndef INCLUDE_SUGGESTIONS_HPP_
+#define INCLUDE_SUGGESTIONS_HPP_
 
 #include <grpcpp/grpcpp.h>
 
@@ -18,7 +18,8 @@ namespace suggest {
 void from_json(const nlohmann::json &j, suggest::Suggest_answer& s);
 }
 
-bool compare(const suggest::Suggest_answer& a,const suggest::Suggest_answer& b );
+bool compare(const suggest::Suggest_answer& a,
+             const suggest::Suggest_answer& b);
 
 class Suggest_Service_Answer : public suggest::Suggest::Service {
  private:
@@ -35,4 +36,4 @@ class Suggest_Service_Answer : public suggest::Suggest::Service {
   Suggest_Service_Answer();
 };
 
-#endif //SUGGESTSERVICE_SUGGESTIONS_H
+#endif  // INCLUDE_SUGGESTIONS_HPP_
