@@ -1,3 +1,6 @@
+// Copyright 2020 Chastikov Alexander cool.chastikov53@gmail.com
+#include "suggestions.hpp"
+
 #include <iostream>
 #include <memory>
 #include <string>
@@ -6,28 +9,13 @@
 #include <grpcpp/health_check_service_interface.h>
 #include <grpcpp/ext/proto_server_reflection_plugin.h>
 
-#include "sugest.grpc.pb.h"
-
 using grpc::Server;
 using grpc::ServerBuilder;
-using grpc::ServerContext;
-using grpc::Status;
-using echo::HelloRequest;
-using echo::HelloResponse;
-using echo::Echo;
 
-class EchoServiceImpl final : public Echo::Service {
-  Status Hello(ServerContext* context, const HelloRequest* request,
-                  HelloResponse* response) override {
-    std::string prefix("Hello ");
-    response->set_data(prefix + request->data());
-    return Status::OK;
-  }
-};
 
 void RunServer() {
   std::string server_address("0.0.0.0:9090");
-  EchoServiceImpl service;
+  Suggest_Service_Answer service;
 
   grpc::EnableDefaultHealthCheckService(true);
   grpc::reflection::InitProtoReflectionServerBuilderPlugin();
@@ -48,6 +36,7 @@ void RunServer() {
 
 int main(int argc, char** argv) {
   RunServer();
-
   return 0;
 }
+//Почему код 15?
+//Почему не работает вывод

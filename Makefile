@@ -9,21 +9,21 @@ generate: install-deps .generate
 
 .PHONY: .generate_structs
 .generate_structs:
-	mkdir -p pkg/echo
+	mkdir -p pkg/suggest
 	protoc -I protos \
-		--go_out ./pkg/echo \
+		--go_out ./pkg/suggest \
 		--go_opt plugins=grpc \
 		--go_opt paths=source_relative \
-		protos/echo.proto
+		protos/suggest.proto
 
 .PHONY: .generate_service
 .generate_service:
-	mkdir -p pkg/echo
-	protoc -I protos --grpc-gateway_out ./pkg/echo \
+	mkdir -p pkg/suggest
+	protoc -I protos --grpc-gateway_out ./pkg/suggest \
 			 --grpc-gateway_opt=logtostderr=true \
 			 --grpc-gateway_opt=paths=source_relative \
 			 --grpc-gateway_opt=generate_unbound_methods=true \
-		protos/echo.proto
+		protos/suggest.proto
 
 .PHONY: build
 build: generate .build
@@ -70,14 +70,14 @@ init-submodule: intall-git .init-submodule
 install-deps: install-golang install-protobuf install-go-deps install-cpp-deps
 
 .PHONY: install-golang
-install-golang: install-brew .install-golang
+install-golang: .install-golang
 
 .PHONY: .install-golang
 .install-golang:
 	which go || brew install golang
 
 .PHONY: install-protobuf
-install-protobuf: install-brew .install-protobuf
+install-protobuf: .install-protobuf
 
 .PHONY: .install-protobuf
 .install-protobuf:
@@ -97,19 +97,15 @@ install-go-deps: install-golang .install-go-deps
 .PHONY: install-cpp-deps
 install-cpp-deps: install-git install-cmake .install-cpp-deps
 
-.PHONY: install-brew
-install-brew:
-	which brew || /bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-
 .PHONY: install-git
-install-git: install-brew .install-git
+install-git: .install-git
 
 .PHONY: .install-git
 .install-git:
 	which git || brew install git
 
 .PHONY: install-cmake
-install-cmake: install-brew .install-cmake
+install-cmake: .install-cmake
 
 .PHONY: .install-cmake
 .install-cmake:

@@ -394,6 +394,12 @@ PublishScripts/
 csx/
 *.build.csdef
 
+*build*/
+*logs*/
+pkg/
+/gateway
+*/suggestion.json
+
 # Microsoft Azure Emulator
 ecf/
 rcf/
