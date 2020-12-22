@@ -15,11 +15,11 @@
 
 //В неймспейсе suggest для неявного присваивания методом get
 namespace suggest {
-void from_json(const nlohmann::json &j, suggest::Suggest_answer& s);
+void from_json(const nlohmann::json &j, suggest::SuggestAnswer& s);
 }
 
-bool compare(const suggest::Suggest_answer& a,
-             const suggest::Suggest_answer& b);
+bool compare(const suggest::SuggestAnswer& a,
+             const suggest::SuggestAnswer& b);
 
 class Suggest_Service_Answer : public suggest::Suggest::Service {
  private:

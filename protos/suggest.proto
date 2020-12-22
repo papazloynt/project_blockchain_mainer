@@ -17,11 +17,11 @@ message SuggestRequest {
   string input = 1;
 }
 
-message Suggest_answer{
+message SuggestAnswer{
  string text = 1;
  uint32 position = 2;
 }
 
 message SuggestResponse{
-  repeated Suggest_answer sugg = 1;
+  repeated SuggestAnswer sugg = 1;
 }
