@@ -38,6 +38,7 @@ find_package(Protobuf CONFIG REQUIRED)
 hunter_add_package(nlohmann_json)
 find_package(nlohmann_json CONFIG REQUIRED)
 
+set(API_GENERATED_DIR ${CMAKE_CURRENT_SOURCE_DIR}/ccpkg)
 
 set(PROTO_GENERATED_SOURCES
         "${API_GENERATED_DIR}/suggest.pb.cc"
@@ -73,6 +74,7 @@ set(PROTO_FILES
         "${CMAKE_CURRENT_SOURCE_DIR}/protos/google/rpc/status.proto")
 
 set(PROTO_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/protos")
+
 add_custom_command(
         OUTPUT  ${PROTO_GENERATED_SOURCES}
         ${PROTO_GENERATED_HEADERS}

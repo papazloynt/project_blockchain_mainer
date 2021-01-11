@@ -5,7 +5,6 @@
 # Prerequisites
 *.d
 
-ccpkg/*
 !ccpkg/.gitkeep
 
 # Compiled Object files
