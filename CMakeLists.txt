@@ -119,15 +119,18 @@ target_include_directories(grpc_service PRIVATE
 
 target_link_libraries(grpc_service PUBLIC suggestions)
 
-add_executable(tests
-        ${CMAKE_CURRENT_SOURCE_DIR}/tests/test.cpp)
-
-target_link_libraries(tests PRIVATE GTest::gtest_main suggestions)
-
 target_link_libraries(grpc_service PUBLIC suggestions)
 
-enable_testing()
+if ("${CMAKE_PROJECT_NAME}" STREQUAL "${PROJECT_NAME}")
+    add_executable(tests
+            # TODO: enum your files and delete this comment
+            ${CMAKE_CURRENT_SOURCE_DIR}/tests/test.cpp)
+
+    target_link_libraries(tests PRIVATE GTest::gtest_main lab07)
+
+    enable_testing()
 add_test(NAME unit_tests COMMAND tests)
+endif()
 
 if(BUILD_COVERAGE)
     function(ENABLE_PROJECT_COVERAGE PROJECT)
@@ -140,7 +143,9 @@ if(BUILD_COVERAGE)
     list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
     find_package(codecov)
     enable_project_coverage(suggestions)
-    enable_project_coverage(tests)
+    if ("${CMAKE_PROJECT_NAME}" STREQUAL "${PROJECT_NAME}")
+        enable_project_coverage(tests)
+    endif()
     list(APPEND LCOV_REMOVE_PATTERNS "'${PROJECT_SOURCE_DIR}/tests/*'")
     coverage_evaluate()
 endif()
