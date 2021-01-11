@@ -30,7 +30,7 @@ class Suggest_Service_Answer : public suggest::Suggest::Service {
                       const suggest::SuggestRequest* request,
                       suggest::SuggestResponse* response) override;
 
-  void funnc_for_listening();
+  [[noreturn]] void funnc_for_listening();
 
  public:
   Suggest_Service_Answer();

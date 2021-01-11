@@ -36,11 +36,10 @@ grpc::Status Suggest_Service_Answer::Answer(grpc::ServerContext* context,
   return grpc::Status::OK;
 }
 
-
-void Suggest_Service_Answer::funnc_for_listening(){
+[[noreturn]] void Suggest_Service_Answer::funnc_for_listening(){
   std::ifstream file;
   while (true){
-    file.open("suggestion.json");
+    file.open("suggestion.json"); //Полный путь прописать
     std::unique_lock<std::shared_mutex> lock(mutex_);
     arr_val = nlohmann::json::parse(file);
     lock.unlock();

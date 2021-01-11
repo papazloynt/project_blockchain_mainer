@@ -18,7 +18,7 @@ set(HUNTER_CONFIGURATION_TYPES Release)
 HunterGate(
   URL "https://github.com/cpp-pm/hunter/archive/v0.23.278.tar.gz"
   SHA1 "35fa55bc1dfcf9f4d7264f8bb26cd1759ce1ae07"
-  # FILEPATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/config.cmake"
+  FILEPATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/config.cmake"
 )
 
 project(suggestservice)
@@ -131,7 +131,6 @@ if(BUILD_COVERAGE)
     set(ENABLE_COVERAGE ON CACHE BOOL "Enable coverage build." FORCE)
     list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
     find_package(codecov)
-    # TODO: change template word to project name and delete this comment
     enable_project_coverage(suggestions)
     enable_project_coverage(tests)
     list(APPEND LCOV_REMOVE_PATTERNS "'${PROJECT_SOURCE_DIR}/tests/*'")
