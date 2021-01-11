@@ -24,7 +24,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: prepare environment
         run:  sudo apt install git &&
-              git submodule update --init
+              git submodule update --init --recursive
       - name: checks
         run:
           docker run -v `pwd`:`pwd` -w `pwd` --cap-add=SYS_PTRACE -t rusdevops/bootstrap-cpp scripts/checks.sh
@@ -40,7 +40,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: prepare environment
         run:  sudo apt install git &&
-              git submodule update --init
+              git submodule update --init --recursive
       - name: tests
         run:
           docker run -v `pwd`:`pwd` -w `pwd` -t rusdevops/bootstrap-cpp scripts/tests.sh
@@ -55,7 +55,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: prepare environment
         run:  sudo apt install git &&
-              git submodule update --init
+              git submodule update --init --recursive
       - name: quality
         run:
           docker run -v `pwd`:`pwd` -w `pwd` -t rusdevops/bootstrap-cpp scripts/coverage.sh
