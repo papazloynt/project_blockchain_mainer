@@ -128,7 +128,7 @@ if ("${CMAKE_PROJECT_NAME}" STREQUAL "${PROJECT_NAME}")
             # TODO: enum your files and delete this comment
             ${CMAKE_CURRENT_SOURCE_DIR}/tests/test.cpp)
 
-    target_link_libraries(tests PRIVATE GTest::gtest_main lab07)
+    target_link_libraries(tests PRIVATE GTest::gtest_main suggestions)
 
     enable_testing()
 add_test(NAME unit_tests COMMAND tests)

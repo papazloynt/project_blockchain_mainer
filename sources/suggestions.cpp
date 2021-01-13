@@ -39,7 +39,7 @@ grpc::Status Suggest_Service_Answer::Answer(grpc::ServerContext* context,
 [[noreturn]] void Suggest_Service_Answer::funnc_for_listening(){
   std::ifstream file;
   while (true){
-    file.open("suggestion.json"); //Полный путь прописать
+    file.open("/home/chastikov/go/src/github.com/iu8-31-cpp2020/sources/suggestions.json"); //Полный путь прописать
     std::unique_lock<std::shared_mutex> lock(mutex_);
     arr_val = nlohmann::json::parse(file);
     lock.unlock();
