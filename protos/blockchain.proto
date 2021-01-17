@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package blockchain;
+
+import "google/api/annotations.proto";
+
+service Blockchain{
+  rpc Transaction(TransactionRequest) returns (TransactionResponse) {
+    option (google.api.http) = {
+      post: "/v1/blockchain"
+      body: "*"
+    };
+  }
+}
+
+
+message TransactionStruct {
+  string client_from = 1;
+  string client_to = 2;
+  uint32 sum = 3;
+}
+
+message TransactionRequest {
+    TransactionStruct req = 1;
+}
+
+message TransactionResponse{
+  string answer = 1;
+}

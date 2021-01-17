@@ -6,22 +6,15 @@
 #include <grpcpp/grpcpp.h>
 
 #include <google/protobuf/repeated_field.h>
-#include <suggest.grpc.pb.h>
+#include <blockchain.grpc.pb.h>
 #include <shared_mutex>
 #include <nlohmann/json.hpp>
 #include <string>
 #include <fstream>
 #include<thread>
 
-//В неймспейсе suggest для неявного присваивания методом get
-namespace suggest {
-void from_json(const nlohmann::json &j, suggest::SuggestAnswer& s);
-}
 
-bool compare(const suggest::SuggestAnswer& a,
-             const suggest::SuggestAnswer& b);
-
-class Suggest_Service_Answer : public suggest::Suggest::Service {
+class Suggest_Service_Answer : public blockchain::Blockchain::Service {
  private:
   std::shared_mutex mutex_;
   nlohmann::json arr_val;

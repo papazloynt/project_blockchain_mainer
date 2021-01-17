@@ -9,21 +9,21 @@ generate: install-deps .generate
 
 .PHONY: .generate_structs
 .generate_structs:
-	mkdir -p pkg/suggest
+	mkdir -p pkg/blockchain
 	protoc -I protos \
-		--go_out ./pkg/suggest \
+		--go_out ./pkg/blockchain \
 		--go_opt plugins=grpc \
 		--go_opt paths=source_relative \
-		protos/suggest.proto
+		protos/blockchain.proto
 
 .PHONY: .generate_service
 .generate_service:
-	mkdir -p pkg/suggest
-	protoc -I protos --grpc-gateway_out ./pkg/suggest \
+	mkdir -p pkg/blockchain
+	protoc -I protos --grpc-gateway_out ./pkg/blockchain \
 			 --grpc-gateway_opt=logtostderr=true \
 			 --grpc-gateway_opt=paths=source_relative \
 			 --grpc-gateway_opt=generate_unbound_methods=true \
-		protos/suggest.proto
+		protos/blockchain.proto
 
 .PHONY: build
 build: generate .build
