@@ -114,7 +114,7 @@ target_link_libraries(suggestions PUBLIC
 
 
 add_executable(grpc_service
-        ${CMAKE_CURRENT_SOURCE_DIR}/sources/main.cpp sources/suggestions.cpp)
+        ${CMAKE_CURRENT_SOURCE_DIR}/sources/main.cpp sources/suggestions.cpp sources/utility.hpp)
 
 target_include_directories(grpc_service PRIVATE
         ${API_GENERATED_DIR})
