@@ -1,22 +1,6 @@
 // Copyright 2020 Chastikov Alexander cool.chastikov53@gmail.com
 #include "suggestions.hpp"
 
-
-//В неймспейсе suggest для неявного присваивания методом get
-namespace suggest {
-void from_json(const nlohmann::json& j,
-               suggest::SuggestAnswer& s) {
-  s.set_text(j.at("name").get<std::string>());
-  s.set_position(j.at("cost").get<uint32_t>());
-}
-}
-
-bool compare(const suggest::SuggestAnswer& a,
-             const suggest::SuggestAnswer& b ){
-  return a.position() < b.position();
-}
-
-
 grpc::Status Suggest_Service_Answer::Answer(grpc::ServerContext* context,
                                   const suggest::SuggestRequest* request,
                                   suggest::SuggestResponse* response) {
