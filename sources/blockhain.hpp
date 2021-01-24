@@ -2,20 +2,23 @@
 // Created by chastikov on 18.01.2021.
 //
 
-#ifndef BLOCKCHAIN_UTILITY_HPP
-#define BLOCKCHAIN_UTILITY_HPP
+#ifndef BLOCKCHAIN_BLOCKHAIN_HPP
+#define BLOCKCHAIN_BLOCKHAIN_HPP
 
-struct Block {
+#include <vector>
+#include <iterator>
+
+class Block {
   std::string transaction_hash;
   Block* prev_ptr;
 
-  Block(std::string transaction_hash_, Block* prev_ptr) :
+  Block(std::string transaction_hash_, Block* ptr) :
               transaction_hash(transaction_hash_),
-               prev_ptr(prev_ptr_) {}
+               prev_ptr(ptr) {}
 };
 
 
-struct BlockChain {
+class BlockChain {
  private:
   std::vector <Block> block_chain;
 
@@ -30,20 +33,14 @@ struct BlockChain {
   }
 
   void add_block(const InfoTransaction& info){
+    //Сделать сумму по элментам info и найти хэш
     std::string transaction_hash_ = picosha2(info);
     if (block_chain.size != 0) {
-      //Сделать нормальный допуск до предпоследнего элемента
-      block_chain.push_back(transaction_hash_, &block_chain(block_chain.size() - 1));
+      block_chain.emplace_back(transaction_hash_,
+                               &block_chain(block_chain.size()-1));
     } else {
       block_chain.push_back(transaction_hash_, nullptr);
     }
   }
-
 };
-
-
-
-
-
-
-#endif  // BLOCKCHAIN_UTILITY_HPP
+#endif  // BLOCKCHAIN_BLOCKHAIN_HPP

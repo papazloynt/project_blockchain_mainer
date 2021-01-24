@@ -1,13 +1,13 @@
 // Copyright 2020 Chastikov Alexander cool.chastikov53@gmail.com
-#include "suggestions.hpp"
+#include <grpcpp/ext/proto_server_reflection_plugin.h>
+#include <grpcpp/grpcpp.h>
+#include <grpcpp/health_check_service_interface.h>
 
 #include <iostream>
 #include <memory>
 #include <string>
 
-#include <grpcpp/grpcpp.h>
-#include <grpcpp/health_check_service_interface.h>
-#include <grpcpp/ext/proto_server_reflection_plugin.h>
+#include "transaction.hpp"
 
 using grpc::Server;
 using grpc::ServerBuilder;

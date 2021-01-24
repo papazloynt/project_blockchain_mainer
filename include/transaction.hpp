@@ -34,7 +34,7 @@ class DoTransaction : public blockchain::Blockchain::Service {
                       const blockchain::TransactionRequest* request,
                       blockchain::TransactionResponse* response) override {
     Transac transac_(request);
-    /// у первого Убавить баланс, у второго добавить денег.
+    // у первого Убавить баланс, у второго добавить денег.
   }
 
 };

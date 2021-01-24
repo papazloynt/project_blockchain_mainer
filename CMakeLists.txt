@@ -90,7 +90,7 @@ add_custom_command(
         DEPENDS ${PROTO_FILES})
 
 add_library(suggestions STATIC
-        ${CMAKE_CURRENT_SOURCE_DIR}/sources/suggestions.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/sources/transaction.cpp
         ${PROTO_GENERATED_SOURCES}
         ${PROTO_GENERATED_GRPC_SOURCES})
 
@@ -114,7 +114,7 @@ target_link_libraries(suggestions PUBLIC
 
 
 add_executable(grpc_service
-        ${CMAKE_CURRENT_SOURCE_DIR}/sources/main.cpp sources/suggestions.cpp sources/utility.hpp)
+        ${CMAKE_CURRENT_SOURCE_DIR}/sources/main.cpp sources/transaction.cpp sources/blockhain.hpp)
 
 target_include_directories(grpc_service PRIVATE
         ${API_GENERATED_DIR})
