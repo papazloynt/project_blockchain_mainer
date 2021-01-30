@@ -35,10 +35,8 @@ find_package(gRPC CONFIG REQUIRED)
 hunter_add_package(Protobuf)
 find_package(Protobuf CONFIG REQUIRED)
 
-hunter_add_package(nlohmann_json)
-find_package(nlohmann_json CONFIG REQUIRED)
-
-
+# For SQLite3
+find_package(Threads)
 
 set(PROTO_GENERATED_SOURCES
         "${CMAKE_CURRENT_BINARY_DIR}/blockchain.pb.cc"
@@ -89,38 +87,34 @@ add_custom_command(
         ${PROTO_FILES}
         DEPENDS ${PROTO_FILES})
 
-add_library(suggestions STATIC
+#SQLite3
+add_library(database SHARED
+        ${CMAKE_CURRENT_SOURCE_DIR}/SQLite3/sqlite3.c)
+
+target_include_directories(database
+        PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/SQLite3)
+
+target_link_libraries(database
+        PUBLIC Threads::Threads
+        dl)
+
+# blockchain
+add_executable(blockchain
+        ${CMAKE_CURRENT_SOURCE_DIR}/sources/main.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/sources/transaction.cpp
         ${PROTO_GENERATED_SOURCES}
         ${PROTO_GENERATED_GRPC_SOURCES})
 
-target_include_directories(suggestions PUBLIC
+target_include_directories(grpc_service PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/include
-        PRIVATE ${CMAKE_CURRENT_BINARY_DIR}
-        )
+        PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 
-add_custom_target(generate
-        DEPENDS
-        ${PROTO_GENERATED_SOURCES}
-        ${PROTO_GENERATED_HEADERS}
-        ${PROTO_GENERATED_GRPC_SOURCES}
-        ${PROTO_GENERATED_GRPC_HEADERS}
-        )
-
-target_link_libraries(suggestions PUBLIC
+target_link_libraries(grpc_service PUBLIC
         gRPC::grpc++ gRPC::grpc++_reflection
         protobuf::libprotobuf
-        nlohmann_json::nlohmann_json)
+        database)
 
-
-add_executable(grpc_service
-        ${CMAKE_CURRENT_SOURCE_DIR}/sources/main.cpp sources/transaction.cpp sources/blockhain.hpp)
-
-target_include_directories(grpc_service PRIVATE
-        ${API_GENERATED_DIR})
-
-target_link_libraries(grpc_service PUBLIC suggestions)
-
+# test
 if ("${CMAKE_PROJECT_NAME}" STREQUAL "${PROJECT_NAME}")
     add_executable(tests
             # TODO: enum your files and delete this comment

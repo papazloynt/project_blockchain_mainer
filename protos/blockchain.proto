@@ -7,12 +7,11 @@ import "google/api/annotations.proto";
 service Blockchain{
   rpc Transaction(TransactionRequest) returns (TransactionResponse) {
     option (google.api.http) = {
-      post: "/v1/blockchain"
+      post: "/v1/transaction"
       body: "*"
     };
   }
 }
-
 
 message TransactionStruct {
   string client_from = 1;

@@ -12,6 +12,7 @@
 #include <string>
 #include <fstream>
 #include<thread>
+#include <sqlite3.h>
 
 
 struct Transac {
@@ -25,16 +26,15 @@ struct Transac {
                             sum(stoi(request->req().client_from())) {}
 };
 
-class DoTransaction : public blockchain::Blockchain::Service {
+class Mainer : public blockchain::Blockchain::Service {
+ public:
+  Mainer();
  private:
-  std::shared_mutex mutex_;
-  nlohmann::json arr_val;
-
-  grpc::Status Transaction(grpc::ServerContext* context,
+   grpc::Status Transaction(grpc::ServerContext* context,
                       const blockchain::TransactionRequest* request,
                       blockchain::TransactionResponse* response) override {
     Transac transac_(request);
-    // у первого Убавить баланс, у второго добавить денег.
+
   }
 
 };
