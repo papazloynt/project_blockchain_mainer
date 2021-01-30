@@ -98,33 +98,45 @@ target_link_libraries(database
         PUBLIC Threads::Threads
         dl)
 
-# blockchain
-add_executable(blockchain
+# Blockchain
+add_library(blockchain INTERFACE)
+
+target_include_directories(blockchain
+        INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+
+# Service Mainer
+add_executable(service_mainer
         ${CMAKE_CURRENT_SOURCE_DIR}/sources/main.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/sources/transaction.cpp
         ${PROTO_GENERATED_SOURCES}
         ${PROTO_GENERATED_GRPC_SOURCES})
 
-target_include_directories(grpc_service PRIVATE
+target_include_directories(service_mainer PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/include
         PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 
-target_link_libraries(grpc_service PUBLIC
+target_link_libraries(service_mainer PUBLIC
         gRPC::grpc++ gRPC::grpc++_reflection
         protobuf::libprotobuf
-        database)
+        database
+        blockchain)
 
-# test
-if ("${CMAKE_PROJECT_NAME}" STREQUAL "${PROJECT_NAME}")
-    add_executable(tests
-            # TODO: enum your files and delete this comment
-            ${CMAKE_CURRENT_SOURCE_DIR}/tests/test.cpp)
+# Test
+add_executable(tests
+        ${CMAKE_CURRENT_SOURCE_DIR}/tests/test.cpp
+        ${PROTO_GENERATED_SOURCES})
 
-    target_link_libraries(tests PRIVATE GTest::gtest_main suggestions)
+target_link_libraries(tests
+        PRIVATE GTest::gtest_main
+        protobuf::libprotobuf)
 
-    enable_testing()
+target_include_directories(tests
+        PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/headers
+        ${CMAKE_CURRENT_BINARY_DIR})
+
+enable_testing()
 add_test(NAME unit_tests COMMAND tests)
-endif()
+
 
 if(BUILD_COVERAGE)
     function(ENABLE_PROJECT_COVERAGE PROJECT)
@@ -136,7 +148,7 @@ if(BUILD_COVERAGE)
     set(ENABLE_COVERAGE ON CACHE BOOL "Enable coverage build." FORCE)
     list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
     find_package(codecov)
-    enable_project_coverage(suggestions)
+    enable_project_coverage(service_mainer)
     if ("${CMAKE_PROJECT_NAME}" STREQUAL "${PROJECT_NAME}")
         enable_project_coverage(tests)
     endif()
