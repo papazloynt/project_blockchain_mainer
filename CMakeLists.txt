@@ -38,6 +38,8 @@ find_package(Protobuf CONFIG REQUIRED)
 # For SQLite3
 find_package(Threads)
 
+add_subdirectory("third-party/")
+
 set(PROTO_GENERATED_SOURCES
         "${CMAKE_CURRENT_BINARY_DIR}/blockchain.pb.cc"
         "${CMAKE_CURRENT_BINARY_DIR}/google/api/annotations.pb.cc"
@@ -115,11 +117,12 @@ target_include_directories(service_mainer PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/include
         PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 
-target_link_libraries(service_mainer PUBLIC
-        gRPC::grpc++ gRPC::grpc++_reflection
+target_link_libraries(service_mainer
+        PUBLIC gRPC::grpc++ gRPC::grpc++_reflection
         protobuf::libprotobuf
         database
-        blockchain)
+        blockchain
+        PRIVATE picosha)
 
 # Test
 add_executable(tests
