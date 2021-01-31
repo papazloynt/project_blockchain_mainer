@@ -25,7 +25,7 @@ class BlockChain {
  public:
   BlockChain(const BlockChain& b) : block_chain(b.block_chain) {}
 
-  &BlockChain operator= (const BlockChain& b) {
+  BlockChain& operator= (const BlockChain& b) {
     if (this != &b) {
       block_chain = b.block_chain;
     }
