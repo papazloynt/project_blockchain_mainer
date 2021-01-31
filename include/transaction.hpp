@@ -6,18 +6,22 @@
 // private headers
 #include "blockhain.hpp"
 
+// c++ headers
+#include <string>
+#include<thread>
+#include <random>
+#include <shared_mutex>
+
+// SQLite3
+#include <sqlite3.h>
+
+// PicoSHA2
+#include <picosha2.h>
+
+// gRPC
 #include <grpcpp/grpcpp.h>
 /*#include <google/protobuf/repeated_field.h>*/
 #include <blockchain.grpc.pb.h>
-#include <shared_mutex>
-#include <string>
-#include <fstream>
-#include<thread>
-// SQLite3
-#include <sqlite3.h>
-// picosha
-#include <picosha2.h>
-
 
 struct Transac {
   std::string c_from;
@@ -49,19 +53,42 @@ void CreateDataBase(sqlite3* db,char* err){
 
 void InsertPerson(sqlite3* db, char* err) {
   std::string name;
-  std::string password;
+  std::cout << "Please input your login: " << std::endl;
+  std::cin >> name;
+
+  thread_local std::mt19937 gen(std::random_device{}());
+  std::string randomString = std::to_string(gen());
+  std::string password =
+          picosha2::hash256_hex_string(randomString + name);
+
+  std::string sql_request = "INSERT INTO information (name, password, sum) "
+      "VALUES ("
+      "'" + name + "',"
+      " '" + password + "',"
+      " 0);";
+  int rc = sqlite3_exec(db, sql_request.c_str(),
+                    NULL, NULL, &err);
+
+  if ( rc != SQLITE_OK) {
+    std::cout<< "error:" << err <<std::endl;
+  }
 }
 
 class Mainer : public blockchain::Blockchain::Service {
  public:
   Mainer() : db(nullptr), err(nullptr) {
+    //Открываем
     sqlite3_open("Data.db", &db);
-    CreateDataBase(db,err);
-
-
+    //Создаём, если не существует
+    CreateDataBase(db, err);
+    //Вставляем пользлвателя
+    InsertPerson(db, err);
+    //Закрываем, необходимо
+    sqlite3_close(db);
   }
   sqlite3* db;
   char* err;
+
  private:
   std::shared_mutex sh_mutex;
    grpc::Status Transaction(grpc::ServerContext* context,
