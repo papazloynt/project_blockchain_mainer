@@ -66,7 +66,7 @@ void InsertPersonDataBase(sqlite3* db, char* err) {
   }
 }
 
-void TransactionDataBase(sqlite3* db, char* err, const Transac& tr, std::shared_mutex& mutex_) {
+std::string TransactionDataBase(sqlite3* db, const Transac& tr, std::shared_mutex& mutex_) {
   //А что если такого человека нету?
   //Авторизация на стороне клиента
   //Проверка баланса на стороне клиента
@@ -84,13 +84,22 @@ void TransactionDataBase(sqlite3* db, char* err, const Transac& tr, std::shared_
                           " WHERE name='" + tr.client_to +"'";
 
 
-  //Исключения если что не так
+  char* err1 = nullptr;
+  char* err2 = nullptr;
+
   std::unique_lock<std::shared_mutex> lock(mutex_);
-  sqlite3_exec(db, sql_minus.c_str(), NULL, NULL, NULL);
-  sqlite3_exec(db, sql_plus.c_str(), NULL, NULL, NULL);
+  sqlite3_exec(db, sql_minus.c_str(), NULL, NULL, &err1);
+  sqlite3_exec(db, sql_plus.c_str(), NULL, NULL, &err2);
   lock.unlock();
 
   sqlite3_close(db);
+
+  if (err1 != nullptr && err2 != nullptr) {
+    return "OK";
+  } else {
+    return "ERROR";
+  }
+
 }
 
 class Mainer : public blockchain::Blockchain::Service {
@@ -115,7 +124,6 @@ class Mainer : public blockchain::Blockchain::Service {
 
  private:
    std::shared_mutex sh_mutex;
-   //ещё раз обратить внимание на конструктор по умолчанию, который будет проверять Мошенников
    BlockChain b_c;
 
    grpc::Status Transaction(grpc::ServerContext* context,
@@ -126,17 +134,21 @@ class Mainer : public blockchain::Blockchain::Service {
                      request->req().client_to(),
                      request->req().sum());
 
-    //Многопоточность сначала - транзакция,
-    // окончательное подтверждение операции - добавление её в цепь блоков
-    b_c.add_block(transac_, sh_mutex);
-    TransactionDataBase(db, err, transac_, sh_mutex);
-    //Добавление токена Майнеру
+    std:: string status = TransactionDataBase(db, transac_, sh_mutex);
+    if (status == "OK") {
+      b_c.add_block(transac_, sh_mutex);
+    } else {
+      *response->mutable_answer() = "Data Base was messed up";
+      return grpc::Status::CANCELLED;
+    }
+
+    //Добавление 1 токена майнеру
+
      return grpc::Status::OK;
   }
 
   void HackerProtection() {
     while (true) {
-      //Лучше константные итераторы?
       auto it = b_c.block_chain.cbegin();
       std::string l_hash = it->block_hash;
       ++it;
