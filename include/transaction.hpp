@@ -7,6 +7,7 @@
 #include "blockhain.hpp"
 
 // c++ headers
+#include <iostream>
 #include <string>
 #include<thread>
 #include <random>
@@ -20,19 +21,9 @@
 
 // gRPC
 #include <grpcpp/grpcpp.h>
-/*#include <google/protobuf/repeated_field.h>*/
 #include <blockchain.grpc.pb.h>
 
-struct Transac {
-  std::string c_from;
-  std::string c_to ;
-  uint32_t sum;
-  Transac() : c_from(), c_to(), sum(0) {}
-  explicit Transac(const blockchain::TransactionRequest* request) :
-                            c_from(request->req().client_from()),
-                            c_to(request->req().client_to()),
-                            sum(stoi(request->req().client_from())) {}
-};
+
 
 void CreateDataBase(sqlite3* db,char* err){
   //Создаём таблицу, имя - единственное, повторяться не может
@@ -51,7 +42,7 @@ void CreateDataBase(sqlite3* db,char* err){
   }
 }
 
-void InsertPerson(sqlite3* db, char* err) {
+void InsertPersonDataBase(sqlite3* db, char* err) {
   std::string name;
   std::cout << "Please input your login: " << std::endl;
   std::cin >> name;
@@ -70,33 +61,68 @@ void InsertPerson(sqlite3* db, char* err) {
                     NULL, NULL, &err);
 
   if ( rc != SQLITE_OK) {
-    std::cout<< "error:" << err <<std::endl;
+    std::cout << "error:" << err << std::endl;
   }
+}
+
+void TransactionDataBase(sqlite3* db, char* err, const Transac& tr) {
+  //А что если такого человека нету?
+  //Авторизация на стороне клиента
+  //Проверка баланса на стороне клиента
+  sqlite3_open("Data.db", &db);
+  //У кого минус
+  std::string sql_minus = "UPDATE information SET "
+      "sum=sum-" + std::to_string(tr.sum) +
+      " WHERE name='" + tr.client_from +"'";
+
+  //У кого плюс
+  std::string sql_plus = "UPDATE information SET "
+                          "sum=sum+" + std::to_string(tr.sum) +
+                          " WHERE name='" + tr.client_to +"'";
+
+  //Сделать err
+  //Исключения если что не так
+  sqlite3_exec(db, sql_minus.c_str(), NULL, NULL, NULL);
+  sqlite3_exec(db, sql_plus.c_str(), NULL, NULL, NULL);
+
+  sqlite3_close(db);
 }
 
 class Mainer : public blockchain::Blockchain::Service {
  public:
+  //Добавить block_chain
   Mainer() : db(nullptr), err(nullptr) {
     //Открываем
     sqlite3_open("Data.db", &db);
     //Создаём, если не существует
     CreateDataBase(db, err);
     //Вставляем пользлвателя
-    InsertPerson(db, err);
-    //Закрываем, необходимо
+    InsertPersonDataBase(db, err);
+    //Закрываем, т.к. необходимо
     sqlite3_close(db);
   }
   sqlite3* db;
   char* err;
 
  private:
-  std::shared_mutex sh_mutex;
+   std::shared_mutex sh_mutex;
+   //ещё раз обратить внимание на конструктор по умолчанию, который будет проверять Мошенников
+   BlockChain block_chain;
+
    grpc::Status Transaction(grpc::ServerContext* context,
                       const blockchain::TransactionRequest* request,
                       blockchain::TransactionResponse* response) override {
-    Transac transac_(request);
 
+     Transac transac_(request->req().client_from(),
+                     request->req().client_to(),
+                     request->req().sum());
+
+    block_chain.add_block(transac_, sh_mutex);
+    TransactionDataBase(db, err, transac_);
+     return Status::OK;
   }
+
+  //Добавить получение информации о балансе, скорее всего реализаия у клиента
 
 };
 
