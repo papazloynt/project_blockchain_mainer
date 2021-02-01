@@ -105,7 +105,7 @@ std::string TransactionDataBase(sqlite3* db, const Transac& tr, std::shared_mute
 
 }
 
-std::string AddTokens(sqlite3* db, const unsigned s, std::string name, std::shared_mutex& mutex_) {
+std::string AddTokens(sqlite3* db, const unsigned s, const std::string& name, std::shared_mutex& mutex_) {
   sqlite3_open("Data.db", &db);
 
   std::string sql_plus = "UPDATE information SET "

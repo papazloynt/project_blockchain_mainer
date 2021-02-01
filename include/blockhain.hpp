@@ -47,9 +47,9 @@ struct BlockChain {
     // Первый блок - количество токенов,
     // которые получает Майнер за формирование блока
     std::string block_hash =
-        picosha2::hash256_hex_string("first block");
+        picosha2::hash256_hex_string(std::string("first block"));
     std::string transaction_hash =
-        picosha2::hash256_hex_string("1 token");
+        picosha2::hash256_hex_string(std::string("1 token"));
     block_chain.emplace_back(0, block_hash, transaction_hash, "");
   }
 
