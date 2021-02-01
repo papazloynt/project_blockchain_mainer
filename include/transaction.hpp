@@ -65,11 +65,13 @@ void InsertPersonDataBase(sqlite3* db, char* err) {
   }
 }
 
-void TransactionDataBase(sqlite3* db, char* err, const Transac& tr) {
+void TransactionDataBase(sqlite3* db, char* err, const Transac& tr, std::shared_mutex& mutex_) {
   //А что если такого человека нету?
   //Авторизация на стороне клиента
   //Проверка баланса на стороне клиента
+
   sqlite3_open("Data.db", &db);
+
   //У кого минус
   std::string sql_minus = "UPDATE information SET "
       "sum=sum-" + std::to_string(tr.sum) +
@@ -80,10 +82,12 @@ void TransactionDataBase(sqlite3* db, char* err, const Transac& tr) {
                           "sum=sum+" + std::to_string(tr.sum) +
                           " WHERE name='" + tr.client_to +"'";
 
-  //Сделать err
+
   //Исключения если что не так
+  std::unique_lock<std::shared_mutex> lock(mutex_);
   sqlite3_exec(db, sql_minus.c_str(), NULL, NULL, NULL);
   sqlite3_exec(db, sql_plus.c_str(), NULL, NULL, NULL);
+  lock.unlock();
 
   sqlite3_close(db);
 }
@@ -118,8 +122,8 @@ class Mainer : public blockchain::Blockchain::Service {
                      request->req().sum());
 
     block_chain.add_block(transac_, sh_mutex);
-    TransactionDataBase(db, err, transac_);
-     return Status::OK;
+    TransactionDataBase(db, err, transac_, sh_mutex);
+     return grpc::Status::OK;
   }
 
   //Добавить получение информации о балансе, скорее всего реализаия у клиента

@@ -15,7 +15,7 @@ using grpc::ServerBuilder;
 
 void RunServer() {
   std::string server_address("0.0.0.0:9090");
-  Suggest_Service_Answer service;
+  Mainer service;
 
   grpc::EnableDefaultHealthCheckService(true);
   grpc::reflection::InitProtoReflectionServerBuilderPlugin();
