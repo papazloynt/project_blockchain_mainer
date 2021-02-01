@@ -15,7 +15,7 @@
 #include <picosha2.h>
 
 
-
+//Можно передавать сам реквест, вопрос как - хороший)
 struct Transac {
   std::string client_from;
   std::string client_to ;

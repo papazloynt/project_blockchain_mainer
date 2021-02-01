@@ -94,8 +94,8 @@ void TransactionDataBase(sqlite3* db, char* err, const Transac& tr, std::shared_
 
 class Mainer : public blockchain::Blockchain::Service {
  public:
-  //Добавить block_chain
-  Mainer() : db(nullptr), err(nullptr) {
+
+  Mainer() : db(nullptr), err(nullptr), block_chain() {
     //Открываем
     sqlite3_open("Data.db", &db);
     //Создаём, если не существует
@@ -121,13 +121,15 @@ class Mainer : public blockchain::Blockchain::Service {
                      request->req().client_to(),
                      request->req().sum());
 
+    //Многопоточность сначала - транзакция,
+    // окончательное подтверждение операции - добавление её в цепь блоков
     block_chain.add_block(transac_, sh_mutex);
     TransactionDataBase(db, err, transac_, sh_mutex);
     //Добавление токена Майнеру
      return grpc::Status::OK;
   }
 
-  //Добавить получение информации о балансе, скорее всего реализаия у клиента
+  //Добавить получение информации о балансе, скорее всего реализация у клиента
 
 };
 
