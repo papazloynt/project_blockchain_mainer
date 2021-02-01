@@ -106,6 +106,9 @@ add_library(blockchain INTERFACE)
 target_include_directories(blockchain
         INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
+target_link_libraries(blockchain
+        INTERFACE picosha)
+
 # Service Mainer
 add_executable(service_mainer
         ${CMAKE_CURRENT_SOURCE_DIR}/sources/main.cpp

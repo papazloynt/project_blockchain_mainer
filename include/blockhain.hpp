@@ -9,6 +9,7 @@
 #include <list>
 #include <iterator>
 #include <string>
+#include <shared_mutex>
 
 // PicoSHA2
 #include <picosha2.h>
@@ -42,6 +43,8 @@ struct Block {
 struct BlockChain {
   std::list <Block> block_chain;
 
+  BlockChain() = default;
+
   BlockChain(const BlockChain& b) : block_chain(b.block_chain) {}
 
   BlockChain& operator= (const BlockChain& b) {
@@ -51,7 +54,8 @@ struct BlockChain {
     return *this;
   }
 
-  void add_block(const Transac& info){
+  //Подумать, может быть можно сделать конструктор по умролчанию для первой операции
+  void add_block(const Transac& info, std::shared_mutex& mutex_){
     std::string transaction_hash =
         picosha2::hash256_hex_string(info.client_from +
                                      info.client_to +
@@ -59,6 +63,7 @@ struct BlockChain {
     std::string block_hash =
         picosha2::hash256_hex_string(std::to_string(block_chain.size() + 1) +
                                      transaction_hash);
+    std::unique_lock<std::shared_mutex> lock(mutex_);
     if (block_chain.size() != 0) {
       std::list<Block>::iterator it = block_chain.end();
       block_chain.emplace_back(block_chain.size() + 1,
