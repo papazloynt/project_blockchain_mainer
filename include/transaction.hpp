@@ -12,6 +12,7 @@
 #include<thread>
 #include <random>
 #include <shared_mutex>
+#include <chrono>
 
 // SQLite3
 #include <sqlite3.h>
@@ -95,7 +96,7 @@ void TransactionDataBase(sqlite3* db, char* err, const Transac& tr, std::shared_
 class Mainer : public blockchain::Blockchain::Service {
  public:
 
-  Mainer() : db(nullptr), err(nullptr), block_chain() {
+  Mainer() : db(nullptr), err(nullptr), b_c() {
     //Открываем
     sqlite3_open("Data.db", &db);
     //Создаём, если не существует
@@ -104,6 +105,10 @@ class Mainer : public blockchain::Blockchain::Service {
     InsertPersonDataBase(db, err);
     //Закрываем, т.к. необходимо
     sqlite3_close(db);
+
+    //Проверка на хакерство
+    std::thread check(&Mainer::HackerProtection, this);
+    check.detach();
   }
   sqlite3* db;
   char* err;
@@ -111,7 +116,7 @@ class Mainer : public blockchain::Blockchain::Service {
  private:
    std::shared_mutex sh_mutex;
    //ещё раз обратить внимание на конструктор по умолчанию, который будет проверять Мошенников
-   BlockChain block_chain;
+   BlockChain b_c;
 
    grpc::Status Transaction(grpc::ServerContext* context,
                       const blockchain::TransactionRequest* request,
@@ -123,10 +128,28 @@ class Mainer : public blockchain::Blockchain::Service {
 
     //Многопоточность сначала - транзакция,
     // окончательное подтверждение операции - добавление её в цепь блоков
-    block_chain.add_block(transac_, sh_mutex);
+    b_c.add_block(transac_, sh_mutex);
     TransactionDataBase(db, err, transac_, sh_mutex);
     //Добавление токена Майнеру
      return grpc::Status::OK;
+  }
+
+  void HackerProtection() {
+    while (true) {
+      //Лучше константные итераторы?
+      auto it = b_c.block_chain.cbegin();
+      std::string l_hash = it->block_hash;
+      ++it;
+      for (; it != b_c.block_chain.cend(); ++it) {
+        if (l_hash != it->prev_block_hash) {
+          std::cerr << "Someone is trying to change the block system!!!";
+          exit(2);
+        } else {
+          l_hash = it->block_hash;
+        }
+      }
+      std::this_thread::sleep_for(std::chrono::minutes(5));
+    }
   }
 
   //Добавить получение информации о балансе, скорее всего реализация у клиента
