@@ -43,7 +43,15 @@ struct Block {
 struct BlockChain {
   std::list <Block> block_chain;
 
-  BlockChain() = default;
+  BlockChain() {
+    // Первый блок - количество токенов,
+    // которые получает Майнер за формирование блока
+    std::string block_hash =
+        picosha2::hash256_hex_string("first block");
+    std::string transaction_hash =
+        picosha2::hash256_hex_string("1 token");
+    block_chain.emplace_back(0, block_hash, transaction_hash, "");
+  }
 
   BlockChain(const BlockChain& b) : block_chain(b.block_chain) {}
 
@@ -54,7 +62,6 @@ struct BlockChain {
     return *this;
   }
 
-  //Подумать, может быть можно сделать конструктор по умролчанию для первой операции
   void add_block(const Transac& info, std::shared_mutex& mutex_){
     std::string transaction_hash =
         picosha2::hash256_hex_string(info.client_from +
@@ -64,15 +71,12 @@ struct BlockChain {
         picosha2::hash256_hex_string(std::to_string(block_chain.size() + 1) +
                                      transaction_hash);
     std::unique_lock<std::shared_mutex> lock(mutex_);
-    if (block_chain.size() != 0) {
-      std::list<Block>::iterator it = block_chain.end();
-      block_chain.emplace_back(block_chain.size() + 1,
-                               block_hash,
-                               transaction_hash,
-                               (--it)->block_hash);
-    } else {
-      block_chain.emplace_back(0, block_hash, transaction_hash, "");
-    }
+
+    std::list<Block>::iterator it = block_chain.end();
+    block_chain.emplace_back(block_chain.size(),
+                             block_hash,
+                             transaction_hash,
+                             (--it)->block_hash);
   }
 };
 #endif  // BLOCKCHAIN_BLOCKHAIN_HPP

@@ -123,6 +123,7 @@ class Mainer : public blockchain::Blockchain::Service {
 
     block_chain.add_block(transac_, sh_mutex);
     TransactionDataBase(db, err, transac_, sh_mutex);
+    //Добавление токена Майнеру
      return grpc::Status::OK;
   }
 
