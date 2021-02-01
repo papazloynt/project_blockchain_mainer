@@ -26,7 +26,8 @@
 
 
 
-void CreateDataBase(sqlite3* db,char* err){
+void CreateDataBase(sqlite3* db){
+  char* err;
   //Создаём таблицу, имя - единственное, повторяться не может
   int rc = sqlite3_exec(db, "CREATE TABLE IF NOT EXISTS information("
                             "name TEXT NOT NULL,"
@@ -43,7 +44,7 @@ void CreateDataBase(sqlite3* db,char* err){
   }
 }
 
-void InsertPersonDataBase(sqlite3* db, char* err) {
+std::string InsertPersonDataBase(sqlite3* db) {
   std::string name;
   std::cout << "Please input your login: " << std::endl;
   std::cin >> name;
@@ -53,6 +54,7 @@ void InsertPersonDataBase(sqlite3* db, char* err) {
   std::string password =
           picosha2::hash256_hex_string(randomString + name);
 
+  char* err;
   std::string sql_request = "INSERT INTO information (name, password, sum) "
       "VALUES ("
       "'" + name + "',"
@@ -64,6 +66,7 @@ void InsertPersonDataBase(sqlite3* db, char* err) {
   if ( rc != SQLITE_OK) {
     std::cout << "error:" << err << std::endl;
   }
+  return name;
 }
 
 std::string TransactionDataBase(sqlite3* db, const Transac& tr, std::shared_mutex& mutex_) {
@@ -96,22 +99,40 @@ std::string TransactionDataBase(sqlite3* db, const Transac& tr, std::shared_mute
 
   if (err1 != nullptr && err2 != nullptr) {
     return "OK";
-  } else {
-    return "ERROR";
   }
+    return "ERROR";
 
+
+}
+
+std::string AddTokens(sqlite3* db, const unsigned s, std::string name, std::shared_mutex& mutex_) {
+  sqlite3_open("Data.db", &db);
+
+  std::string sql_plus = "UPDATE information SET "
+                         "sum=sum+" + std::to_string(s) +
+                         " WHERE name='" + name +"'";
+  char* err;
+  std::unique_lock<std::shared_mutex> lock(mutex_);
+  sqlite3_exec(db, sql_plus.c_str(), NULL, NULL, &err);
+  lock.unlock();
+
+  sqlite3_close(db);
+  if (err != nullptr) {
+    return "OK";
+  }
+  return "ERROR";
 }
 
 class Mainer : public blockchain::Blockchain::Service {
  public:
 
-  Mainer() : db(nullptr), err(nullptr), b_c() {
+  Mainer() : db(nullptr), b_c() {
     //Открываем
     sqlite3_open("Data.db", &db);
     //Создаём, если не существует
-    CreateDataBase(db, err);
+    CreateDataBase(db);
     //Вставляем пользлвателя
-    InsertPersonDataBase(db, err);
+    name = InsertPersonDataBase(db);
     //Закрываем, т.к. необходимо
     sqlite3_close(db);
 
@@ -120,7 +141,7 @@ class Mainer : public blockchain::Blockchain::Service {
     check.detach();
   }
   sqlite3* db;
-  char* err;
+  std::string name;
 
  private:
    std::shared_mutex sh_mutex;
@@ -134,6 +155,8 @@ class Mainer : public blockchain::Blockchain::Service {
                      request->req().client_to(),
                      request->req().sum());
 
+     //Избавиться от одинакого кода!
+     //Транзакция Клиент-клиенту
     std:: string status = TransactionDataBase(db, transac_, sh_mutex);
     if (status == "OK") {
       b_c.add_block(transac_, sh_mutex);
@@ -142,7 +165,14 @@ class Mainer : public blockchain::Blockchain::Service {
       return grpc::Status::CANCELLED;
     }
 
-    //Добавление 1 токена майнеру
+    //Вознаграждение
+    status = AddTokens(db, 1, name, sh_mutex);
+     if (status == "OK") {
+       b_c.add_block( Transac("", name, 1), sh_mutex);
+     } else {
+       *response->mutable_answer() = "Data Base was messed up";
+       return grpc::Status::CANCELLED;
+     }
 
      return grpc::Status::OK;
   }
