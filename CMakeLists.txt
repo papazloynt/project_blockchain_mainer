@@ -40,29 +40,32 @@ find_package(Threads)
 
 add_subdirectory("third-party/")
 
+set(API_GENERATED_DIR
+        ${CMAKE_CURRENT_SOURCE_DIR}/ccpkg)
+
 set(PROTO_GENERATED_SOURCES
-        "${CMAKE_CURRENT_BINARY_DIR}/blockchain.pb.cc"
-        "${CMAKE_CURRENT_BINARY_DIR}/google/api/annotations.pb.cc"
-        "${CMAKE_CURRENT_BINARY_DIR}/google/api/http.pb.cc"
-        "${CMAKE_CURRENT_BINARY_DIR}/google/rpc/status.pb.cc")
+        "${API_GENERATED_DIR}/blockchain.pb.cc"
+        "${API_GENERATED_DIR}/google/api/annotations.pb.cc"
+        "${API_GENERATED_DIR}/google/api/http.pb.cc"
+        "${API_GENERATED_DIR}/google/rpc/status.pb.cc")
 
 set(PROTO_GENERATED_HEADERS
-        "${CMAKE_CURRENT_BINARY_DIR}/blockchain.pb.h"
-        "${CMAKE_CURRENT_BINARY_DIR}/google/api/annotations.pb.h"
-        "${CMAKE_CURRENT_BINARY_DIR}/google/api/http.pb.h"
-        "${CMAKE_CURRENT_BINARY_DIR}/google/rpc/status.pb.h")
+        "${API_GENERATED_DIR}/blockchain.pb.h"
+        "${API_GENERATED_DIR}/google/api/annotations.pb.h"
+        "${API_GENERATED_DIR}/google/api/http.pb.h"
+        "${API_GENERATED_DIR}/google/rpc/status.pb.h")
 
 set(PROTO_GENERATED_GRPC_SOURCES
-        "${CMAKE_CURRENT_BINARY_DIR}/blockchain.grpc.pb.cc"
-        "${CMAKE_CURRENT_BINARY_DIR}/google/api/annotations.grpc.pb.cc"
-        "${CMAKE_CURRENT_BINARY_DIR}/google/api/http.grpc.pb.cc"
-        "${CMAKE_CURRENT_BINARY_DIR}/google/rpc/status.grpc.pb.cc")
+        "${API_GENERATED_DIR}/blockchain.grpc.pb.cc"
+        "${API_GENERATED_DIR}/google/api/annotations.grpc.pb.cc"
+        "${API_GENERATED_DIR}/google/api/http.grpc.pb.cc"
+        "${API_GENERATED_DIR}/google/rpc/status.grpc.pb.cc")
 
 set(PROTO_GENERATED_GRPC_HEADERS
-        "${CMAKE_CURRENT_BINARY_DIR}/blockchain.grpc.pb.h"
-        "${CMAKE_CURRENT_BINARY_DIR}/google/api/annotations.grpc.pb.h"
-        "${CMAKE_CURRENT_BINARY_DIR}/google/api/http.grpc.pb.h"
-        "${CMAKE_CURRENT_BINARY_DIR}/google/rpc/status.grpc.pb.h")
+        "${API_GENERATED_DIR}/blockchain.grpc.pb.h"
+        "${API_GENERATED_DIR}/google/api/annotations.grpc.pb.h"
+        "${API_GENERATED_DIR}/google/api/http.grpc.pb.h"
+        "${API_GENERATED_DIR}/google/rpc/status.grpc.pb.h")
 
 find_program(PROTOBUF_PROTOC protoc)
 find_program(GRPC_CPP_PLUGIN_EXECUTABLE grpc_cpp_plugin)
@@ -82,12 +85,20 @@ add_custom_command(
         ${PROTO_GENERATED_GRPC_HEADERS}
         COMMAND protobuf::protoc
         ARGS
-        --grpc_out "${CMAKE_CURRENT_BINARY_DIR}"
-        --cpp_out "${CMAKE_CURRENT_BINARY_DIR}"
+        --grpc_out "${API_GENERATED_DIR}"
+        --cpp_out "${API_GENERATED_DIR}"
         -I"${PROTO_INCLUDE_DIR}"
         --plugin=protoc-gen-grpc="${GRPC_CPP_PLUGIN_EXECUTABLE}"
         ${PROTO_FILES}
         DEPENDS ${PROTO_FILES})
+
+add_custom_target(generate
+        DEPENDS
+        ${PROTO_GENERATED_SOURCES}
+        ${PROTO_GENERATED_HEADERS}
+        ${PROTO_GENERATED_GRPC_SOURCES}
+        ${PROTO_GENERATED_GRPC_HEADERS}
+        )
 
 #SQLite3
 add_library(database SHARED
@@ -119,7 +130,7 @@ add_executable(service_mainer
 
 target_include_directories(service_mainer PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/include
-        PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
+        PRIVATE ${API_GENERATED_DIR})
 
 target_link_libraries(service_mainer
         PUBLIC gRPC::grpc++ gRPC::grpc++_reflection

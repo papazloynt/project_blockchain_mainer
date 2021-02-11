@@ -48,7 +48,7 @@ struct TableStruct_blockchain_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[3]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[11]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -56,6 +56,30 @@ struct TableStruct_blockchain_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_blockchain_2eproto;
 namespace blockchain {
+class AddMoneyRequest;
+class AddMoneyRequestDefaultTypeInternal;
+extern AddMoneyRequestDefaultTypeInternal _AddMoneyRequest_default_instance_;
+class AddMoneyResponse;
+class AddMoneyResponseDefaultTypeInternal;
+extern AddMoneyResponseDefaultTypeInternal _AddMoneyResponse_default_instance_;
+class AuthorizationRequest;
+class AuthorizationRequestDefaultTypeInternal;
+extern AuthorizationRequestDefaultTypeInternal _AuthorizationRequest_default_instance_;
+class AuthorizationResponse;
+class AuthorizationResponseDefaultTypeInternal;
+extern AuthorizationResponseDefaultTypeInternal _AuthorizationResponse_default_instance_;
+class InfoBalanceRequest;
+class InfoBalanceRequestDefaultTypeInternal;
+extern InfoBalanceRequestDefaultTypeInternal _InfoBalanceRequest_default_instance_;
+class InfoBalanceResponse;
+class InfoBalanceResponseDefaultTypeInternal;
+extern InfoBalanceResponseDefaultTypeInternal _InfoBalanceResponse_default_instance_;
+class RegistrationRequest;
+class RegistrationRequestDefaultTypeInternal;
+extern RegistrationRequestDefaultTypeInternal _RegistrationRequest_default_instance_;
+class RegistrationResponse;
+class RegistrationResponseDefaultTypeInternal;
+extern RegistrationResponseDefaultTypeInternal _RegistrationResponse_default_instance_;
 class TransactionRequest;
 class TransactionRequestDefaultTypeInternal;
 extern TransactionRequestDefaultTypeInternal _TransactionRequest_default_instance_;
@@ -67,6 +91,14 @@ class TransactionStructDefaultTypeInternal;
 extern TransactionStructDefaultTypeInternal _TransactionStruct_default_instance_;
 }  // namespace blockchain
 PROTOBUF_NAMESPACE_OPEN
+template<> ::blockchain::AddMoneyRequest* Arena::CreateMaybeMessage<::blockchain::AddMoneyRequest>(Arena*);
+template<> ::blockchain::AddMoneyResponse* Arena::CreateMaybeMessage<::blockchain::AddMoneyResponse>(Arena*);
+template<> ::blockchain::AuthorizationRequest* Arena::CreateMaybeMessage<::blockchain::AuthorizationRequest>(Arena*);
+template<> ::blockchain::AuthorizationResponse* Arena::CreateMaybeMessage<::blockchain::AuthorizationResponse>(Arena*);
+template<> ::blockchain::InfoBalanceRequest* Arena::CreateMaybeMessage<::blockchain::InfoBalanceRequest>(Arena*);
+template<> ::blockchain::InfoBalanceResponse* Arena::CreateMaybeMessage<::blockchain::InfoBalanceResponse>(Arena*);
+template<> ::blockchain::RegistrationRequest* Arena::CreateMaybeMessage<::blockchain::RegistrationRequest>(Arena*);
+template<> ::blockchain::RegistrationResponse* Arena::CreateMaybeMessage<::blockchain::RegistrationResponse>(Arena*);
 template<> ::blockchain::TransactionRequest* Arena::CreateMaybeMessage<::blockchain::TransactionRequest>(Arena*);
 template<> ::blockchain::TransactionResponse* Arena::CreateMaybeMessage<::blockchain::TransactionResponse>(Arena*);
 template<> ::blockchain::TransactionStruct* Arena::CreateMaybeMessage<::blockchain::TransactionStruct>(Arena*);
@@ -563,6 +595,1268 @@ class TransactionResponse PROTOBUF_FINAL :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_blockchain_2eproto;
 };
+// -------------------------------------------------------------------
+
+class RegistrationRequest PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:blockchain.RegistrationRequest) */ {
+ public:
+  inline RegistrationRequest() : RegistrationRequest(nullptr) {};
+  virtual ~RegistrationRequest();
+
+  RegistrationRequest(const RegistrationRequest& from);
+  RegistrationRequest(RegistrationRequest&& from) noexcept
+    : RegistrationRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline RegistrationRequest& operator=(const RegistrationRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline RegistrationRequest& operator=(RegistrationRequest&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const RegistrationRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const RegistrationRequest* internal_default_instance() {
+    return reinterpret_cast<const RegistrationRequest*>(
+               &_RegistrationRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  friend void swap(RegistrationRequest& a, RegistrationRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(RegistrationRequest* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(RegistrationRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline RegistrationRequest* New() const final {
+    return CreateMaybeMessage<RegistrationRequest>(nullptr);
+  }
+
+  RegistrationRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<RegistrationRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const RegistrationRequest& from);
+  void MergeFrom(const RegistrationRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(RegistrationRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "blockchain.RegistrationRequest";
+  }
+  protected:
+  explicit RegistrationRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_blockchain_2eproto);
+    return ::descriptor_table_blockchain_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+  };
+  // string name = 1;
+  void clear_name();
+  const std::string& name() const;
+  void set_name(const std::string& value);
+  void set_name(std::string&& value);
+  void set_name(const char* value);
+  void set_name(const char* value, size_t size);
+  std::string* mutable_name();
+  std::string* release_name();
+  void set_allocated_name(std::string* name);
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  std::string* unsafe_arena_release_name();
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  void unsafe_arena_set_allocated_name(
+      std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // @@protoc_insertion_point(class_scope:blockchain.RegistrationRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_blockchain_2eproto;
+};
+// -------------------------------------------------------------------
+
+class RegistrationResponse PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:blockchain.RegistrationResponse) */ {
+ public:
+  inline RegistrationResponse() : RegistrationResponse(nullptr) {};
+  virtual ~RegistrationResponse();
+
+  RegistrationResponse(const RegistrationResponse& from);
+  RegistrationResponse(RegistrationResponse&& from) noexcept
+    : RegistrationResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline RegistrationResponse& operator=(const RegistrationResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline RegistrationResponse& operator=(RegistrationResponse&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const RegistrationResponse& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const RegistrationResponse* internal_default_instance() {
+    return reinterpret_cast<const RegistrationResponse*>(
+               &_RegistrationResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  friend void swap(RegistrationResponse& a, RegistrationResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(RegistrationResponse* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(RegistrationResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline RegistrationResponse* New() const final {
+    return CreateMaybeMessage<RegistrationResponse>(nullptr);
+  }
+
+  RegistrationResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<RegistrationResponse>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const RegistrationResponse& from);
+  void MergeFrom(const RegistrationResponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(RegistrationResponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "blockchain.RegistrationResponse";
+  }
+  protected:
+  explicit RegistrationResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_blockchain_2eproto);
+    return ::descriptor_table_blockchain_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPasswordFieldNumber = 1,
+  };
+  // string password = 1;
+  void clear_password();
+  const std::string& password() const;
+  void set_password(const std::string& value);
+  void set_password(std::string&& value);
+  void set_password(const char* value);
+  void set_password(const char* value, size_t size);
+  std::string* mutable_password();
+  std::string* release_password();
+  void set_allocated_password(std::string* password);
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  std::string* unsafe_arena_release_password();
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  void unsafe_arena_set_allocated_password(
+      std::string* password);
+  private:
+  const std::string& _internal_password() const;
+  void _internal_set_password(const std::string& value);
+  std::string* _internal_mutable_password();
+  public:
+
+  // @@protoc_insertion_point(class_scope:blockchain.RegistrationResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr password_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_blockchain_2eproto;
+};
+// -------------------------------------------------------------------
+
+class AuthorizationRequest PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:blockchain.AuthorizationRequest) */ {
+ public:
+  inline AuthorizationRequest() : AuthorizationRequest(nullptr) {};
+  virtual ~AuthorizationRequest();
+
+  AuthorizationRequest(const AuthorizationRequest& from);
+  AuthorizationRequest(AuthorizationRequest&& from) noexcept
+    : AuthorizationRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline AuthorizationRequest& operator=(const AuthorizationRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AuthorizationRequest& operator=(AuthorizationRequest&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const AuthorizationRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const AuthorizationRequest* internal_default_instance() {
+    return reinterpret_cast<const AuthorizationRequest*>(
+               &_AuthorizationRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(AuthorizationRequest& a, AuthorizationRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AuthorizationRequest* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AuthorizationRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline AuthorizationRequest* New() const final {
+    return CreateMaybeMessage<AuthorizationRequest>(nullptr);
+  }
+
+  AuthorizationRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<AuthorizationRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const AuthorizationRequest& from);
+  void MergeFrom(const AuthorizationRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AuthorizationRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "blockchain.AuthorizationRequest";
+  }
+  protected:
+  explicit AuthorizationRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_blockchain_2eproto);
+    return ::descriptor_table_blockchain_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+    kPasswordFieldNumber = 2,
+  };
+  // string name = 1;
+  void clear_name();
+  const std::string& name() const;
+  void set_name(const std::string& value);
+  void set_name(std::string&& value);
+  void set_name(const char* value);
+  void set_name(const char* value, size_t size);
+  std::string* mutable_name();
+  std::string* release_name();
+  void set_allocated_name(std::string* name);
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  std::string* unsafe_arena_release_name();
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  void unsafe_arena_set_allocated_name(
+      std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // string password = 2;
+  void clear_password();
+  const std::string& password() const;
+  void set_password(const std::string& value);
+  void set_password(std::string&& value);
+  void set_password(const char* value);
+  void set_password(const char* value, size_t size);
+  std::string* mutable_password();
+  std::string* release_password();
+  void set_allocated_password(std::string* password);
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  std::string* unsafe_arena_release_password();
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  void unsafe_arena_set_allocated_password(
+      std::string* password);
+  private:
+  const std::string& _internal_password() const;
+  void _internal_set_password(const std::string& value);
+  std::string* _internal_mutable_password();
+  public:
+
+  // @@protoc_insertion_point(class_scope:blockchain.AuthorizationRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr password_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_blockchain_2eproto;
+};
+// -------------------------------------------------------------------
+
+class AuthorizationResponse PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:blockchain.AuthorizationResponse) */ {
+ public:
+  inline AuthorizationResponse() : AuthorizationResponse(nullptr) {};
+  virtual ~AuthorizationResponse();
+
+  AuthorizationResponse(const AuthorizationResponse& from);
+  AuthorizationResponse(AuthorizationResponse&& from) noexcept
+    : AuthorizationResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline AuthorizationResponse& operator=(const AuthorizationResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AuthorizationResponse& operator=(AuthorizationResponse&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const AuthorizationResponse& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const AuthorizationResponse* internal_default_instance() {
+    return reinterpret_cast<const AuthorizationResponse*>(
+               &_AuthorizationResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    6;
+
+  friend void swap(AuthorizationResponse& a, AuthorizationResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AuthorizationResponse* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AuthorizationResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline AuthorizationResponse* New() const final {
+    return CreateMaybeMessage<AuthorizationResponse>(nullptr);
+  }
+
+  AuthorizationResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<AuthorizationResponse>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const AuthorizationResponse& from);
+  void MergeFrom(const AuthorizationResponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AuthorizationResponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "blockchain.AuthorizationResponse";
+  }
+  protected:
+  explicit AuthorizationResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_blockchain_2eproto);
+    return ::descriptor_table_blockchain_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAnswerFieldNumber = 1,
+  };
+  // string answer = 1;
+  void clear_answer();
+  const std::string& answer() const;
+  void set_answer(const std::string& value);
+  void set_answer(std::string&& value);
+  void set_answer(const char* value);
+  void set_answer(const char* value, size_t size);
+  std::string* mutable_answer();
+  std::string* release_answer();
+  void set_allocated_answer(std::string* answer);
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  std::string* unsafe_arena_release_answer();
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  void unsafe_arena_set_allocated_answer(
+      std::string* answer);
+  private:
+  const std::string& _internal_answer() const;
+  void _internal_set_answer(const std::string& value);
+  std::string* _internal_mutable_answer();
+  public:
+
+  // @@protoc_insertion_point(class_scope:blockchain.AuthorizationResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr answer_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_blockchain_2eproto;
+};
+// -------------------------------------------------------------------
+
+class AddMoneyRequest PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:blockchain.AddMoneyRequest) */ {
+ public:
+  inline AddMoneyRequest() : AddMoneyRequest(nullptr) {};
+  virtual ~AddMoneyRequest();
+
+  AddMoneyRequest(const AddMoneyRequest& from);
+  AddMoneyRequest(AddMoneyRequest&& from) noexcept
+    : AddMoneyRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline AddMoneyRequest& operator=(const AddMoneyRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AddMoneyRequest& operator=(AddMoneyRequest&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const AddMoneyRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const AddMoneyRequest* internal_default_instance() {
+    return reinterpret_cast<const AddMoneyRequest*>(
+               &_AddMoneyRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    7;
+
+  friend void swap(AddMoneyRequest& a, AddMoneyRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AddMoneyRequest* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AddMoneyRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline AddMoneyRequest* New() const final {
+    return CreateMaybeMessage<AddMoneyRequest>(nullptr);
+  }
+
+  AddMoneyRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<AddMoneyRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const AddMoneyRequest& from);
+  void MergeFrom(const AddMoneyRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AddMoneyRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "blockchain.AddMoneyRequest";
+  }
+  protected:
+  explicit AddMoneyRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_blockchain_2eproto);
+    return ::descriptor_table_blockchain_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+    kSumFieldNumber = 2,
+  };
+  // string name = 1;
+  void clear_name();
+  const std::string& name() const;
+  void set_name(const std::string& value);
+  void set_name(std::string&& value);
+  void set_name(const char* value);
+  void set_name(const char* value, size_t size);
+  std::string* mutable_name();
+  std::string* release_name();
+  void set_allocated_name(std::string* name);
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  std::string* unsafe_arena_release_name();
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  void unsafe_arena_set_allocated_name(
+      std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // uint32 sum = 2;
+  void clear_sum();
+  ::PROTOBUF_NAMESPACE_ID::uint32 sum() const;
+  void set_sum(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_sum() const;
+  void _internal_set_sum(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:blockchain.AddMoneyRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 sum_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_blockchain_2eproto;
+};
+// -------------------------------------------------------------------
+
+class AddMoneyResponse PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:blockchain.AddMoneyResponse) */ {
+ public:
+  inline AddMoneyResponse() : AddMoneyResponse(nullptr) {};
+  virtual ~AddMoneyResponse();
+
+  AddMoneyResponse(const AddMoneyResponse& from);
+  AddMoneyResponse(AddMoneyResponse&& from) noexcept
+    : AddMoneyResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline AddMoneyResponse& operator=(const AddMoneyResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AddMoneyResponse& operator=(AddMoneyResponse&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const AddMoneyResponse& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const AddMoneyResponse* internal_default_instance() {
+    return reinterpret_cast<const AddMoneyResponse*>(
+               &_AddMoneyResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    8;
+
+  friend void swap(AddMoneyResponse& a, AddMoneyResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AddMoneyResponse* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AddMoneyResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline AddMoneyResponse* New() const final {
+    return CreateMaybeMessage<AddMoneyResponse>(nullptr);
+  }
+
+  AddMoneyResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<AddMoneyResponse>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const AddMoneyResponse& from);
+  void MergeFrom(const AddMoneyResponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AddMoneyResponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "blockchain.AddMoneyResponse";
+  }
+  protected:
+  explicit AddMoneyResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_blockchain_2eproto);
+    return ::descriptor_table_blockchain_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAnswerFieldNumber = 1,
+  };
+  // string answer = 1;
+  void clear_answer();
+  const std::string& answer() const;
+  void set_answer(const std::string& value);
+  void set_answer(std::string&& value);
+  void set_answer(const char* value);
+  void set_answer(const char* value, size_t size);
+  std::string* mutable_answer();
+  std::string* release_answer();
+  void set_allocated_answer(std::string* answer);
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  std::string* unsafe_arena_release_answer();
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  void unsafe_arena_set_allocated_answer(
+      std::string* answer);
+  private:
+  const std::string& _internal_answer() const;
+  void _internal_set_answer(const std::string& value);
+  std::string* _internal_mutable_answer();
+  public:
+
+  // @@protoc_insertion_point(class_scope:blockchain.AddMoneyResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr answer_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_blockchain_2eproto;
+};
+// -------------------------------------------------------------------
+
+class InfoBalanceRequest PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:blockchain.InfoBalanceRequest) */ {
+ public:
+  inline InfoBalanceRequest() : InfoBalanceRequest(nullptr) {};
+  virtual ~InfoBalanceRequest();
+
+  InfoBalanceRequest(const InfoBalanceRequest& from);
+  InfoBalanceRequest(InfoBalanceRequest&& from) noexcept
+    : InfoBalanceRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline InfoBalanceRequest& operator=(const InfoBalanceRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline InfoBalanceRequest& operator=(InfoBalanceRequest&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const InfoBalanceRequest& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const InfoBalanceRequest* internal_default_instance() {
+    return reinterpret_cast<const InfoBalanceRequest*>(
+               &_InfoBalanceRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    9;
+
+  friend void swap(InfoBalanceRequest& a, InfoBalanceRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(InfoBalanceRequest* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(InfoBalanceRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline InfoBalanceRequest* New() const final {
+    return CreateMaybeMessage<InfoBalanceRequest>(nullptr);
+  }
+
+  InfoBalanceRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<InfoBalanceRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const InfoBalanceRequest& from);
+  void MergeFrom(const InfoBalanceRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(InfoBalanceRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "blockchain.InfoBalanceRequest";
+  }
+  protected:
+  explicit InfoBalanceRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_blockchain_2eproto);
+    return ::descriptor_table_blockchain_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+  };
+  // string name = 1;
+  void clear_name();
+  const std::string& name() const;
+  void set_name(const std::string& value);
+  void set_name(std::string&& value);
+  void set_name(const char* value);
+  void set_name(const char* value, size_t size);
+  std::string* mutable_name();
+  std::string* release_name();
+  void set_allocated_name(std::string* name);
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  std::string* unsafe_arena_release_name();
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  void unsafe_arena_set_allocated_name(
+      std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // @@protoc_insertion_point(class_scope:blockchain.InfoBalanceRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_blockchain_2eproto;
+};
+// -------------------------------------------------------------------
+
+class InfoBalanceResponse PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:blockchain.InfoBalanceResponse) */ {
+ public:
+  inline InfoBalanceResponse() : InfoBalanceResponse(nullptr) {};
+  virtual ~InfoBalanceResponse();
+
+  InfoBalanceResponse(const InfoBalanceResponse& from);
+  InfoBalanceResponse(InfoBalanceResponse&& from) noexcept
+    : InfoBalanceResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline InfoBalanceResponse& operator=(const InfoBalanceResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline InfoBalanceResponse& operator=(InfoBalanceResponse&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const InfoBalanceResponse& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const InfoBalanceResponse* internal_default_instance() {
+    return reinterpret_cast<const InfoBalanceResponse*>(
+               &_InfoBalanceResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    10;
+
+  friend void swap(InfoBalanceResponse& a, InfoBalanceResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(InfoBalanceResponse* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(InfoBalanceResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline InfoBalanceResponse* New() const final {
+    return CreateMaybeMessage<InfoBalanceResponse>(nullptr);
+  }
+
+  InfoBalanceResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<InfoBalanceResponse>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const InfoBalanceResponse& from);
+  void MergeFrom(const InfoBalanceResponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(InfoBalanceResponse* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "blockchain.InfoBalanceResponse";
+  }
+  protected:
+  explicit InfoBalanceResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_blockchain_2eproto);
+    return ::descriptor_table_blockchain_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kSumFieldNumber = 1,
+  };
+  // string sum = 1;
+  void clear_sum();
+  const std::string& sum() const;
+  void set_sum(const std::string& value);
+  void set_sum(std::string&& value);
+  void set_sum(const char* value);
+  void set_sum(const char* value, size_t size);
+  std::string* mutable_sum();
+  std::string* release_sum();
+  void set_allocated_sum(std::string* sum);
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  std::string* unsafe_arena_release_sum();
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  void unsafe_arena_set_allocated_sum(
+      std::string* sum);
+  private:
+  const std::string& _internal_sum() const;
+  void _internal_set_sum(const std::string& value);
+  std::string* _internal_mutable_sum();
+  public:
+
+  // @@protoc_insertion_point(class_scope:blockchain.InfoBalanceResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr sum_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_blockchain_2eproto;
+};
 // ===================================================================
 
 
@@ -926,9 +2220,806 @@ inline void TransactionResponse::unsafe_arena_set_allocated_answer(
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:blockchain.TransactionResponse.answer)
 }
 
+// -------------------------------------------------------------------
+
+// RegistrationRequest
+
+// string name = 1;
+inline void RegistrationRequest::clear_name() {
+  name_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline const std::string& RegistrationRequest::name() const {
+  // @@protoc_insertion_point(field_get:blockchain.RegistrationRequest.name)
+  return _internal_name();
+}
+inline void RegistrationRequest::set_name(const std::string& value) {
+  _internal_set_name(value);
+  // @@protoc_insertion_point(field_set:blockchain.RegistrationRequest.name)
+}
+inline std::string* RegistrationRequest::mutable_name() {
+  // @@protoc_insertion_point(field_mutable:blockchain.RegistrationRequest.name)
+  return _internal_mutable_name();
+}
+inline const std::string& RegistrationRequest::_internal_name() const {
+  return name_.Get();
+}
+inline void RegistrationRequest::_internal_set_name(const std::string& value) {
+  
+  name_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
+}
+inline void RegistrationRequest::set_name(std::string&& value) {
+  
+  name_.Set(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:blockchain.RegistrationRequest.name)
+}
+inline void RegistrationRequest::set_name(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  name_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArena());
+  // @@protoc_insertion_point(field_set_char:blockchain.RegistrationRequest.name)
+}
+inline void RegistrationRequest::set_name(const char* value,
+    size_t size) {
+  
+  name_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:blockchain.RegistrationRequest.name)
+}
+inline std::string* RegistrationRequest::_internal_mutable_name() {
+  
+  return name_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline std::string* RegistrationRequest::release_name() {
+  // @@protoc_insertion_point(field_release:blockchain.RegistrationRequest.name)
+  return name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void RegistrationRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:blockchain.RegistrationRequest.name)
+}
+inline std::string* RegistrationRequest::unsafe_arena_release_name() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:blockchain.RegistrationRequest.name)
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  
+  return name_.UnsafeArenaRelease(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      GetArena());
+}
+inline void RegistrationRequest::unsafe_arena_set_allocated_name(
+    std::string* name) {
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      name, GetArena());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:blockchain.RegistrationRequest.name)
+}
+
+// -------------------------------------------------------------------
+
+// RegistrationResponse
+
+// string password = 1;
+inline void RegistrationResponse::clear_password() {
+  password_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline const std::string& RegistrationResponse::password() const {
+  // @@protoc_insertion_point(field_get:blockchain.RegistrationResponse.password)
+  return _internal_password();
+}
+inline void RegistrationResponse::set_password(const std::string& value) {
+  _internal_set_password(value);
+  // @@protoc_insertion_point(field_set:blockchain.RegistrationResponse.password)
+}
+inline std::string* RegistrationResponse::mutable_password() {
+  // @@protoc_insertion_point(field_mutable:blockchain.RegistrationResponse.password)
+  return _internal_mutable_password();
+}
+inline const std::string& RegistrationResponse::_internal_password() const {
+  return password_.Get();
+}
+inline void RegistrationResponse::_internal_set_password(const std::string& value) {
+  
+  password_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
+}
+inline void RegistrationResponse::set_password(std::string&& value) {
+  
+  password_.Set(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:blockchain.RegistrationResponse.password)
+}
+inline void RegistrationResponse::set_password(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  password_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArena());
+  // @@protoc_insertion_point(field_set_char:blockchain.RegistrationResponse.password)
+}
+inline void RegistrationResponse::set_password(const char* value,
+    size_t size) {
+  
+  password_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:blockchain.RegistrationResponse.password)
+}
+inline std::string* RegistrationResponse::_internal_mutable_password() {
+  
+  return password_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline std::string* RegistrationResponse::release_password() {
+  // @@protoc_insertion_point(field_release:blockchain.RegistrationResponse.password)
+  return password_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void RegistrationResponse::set_allocated_password(std::string* password) {
+  if (password != nullptr) {
+    
+  } else {
+    
+  }
+  password_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), password,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:blockchain.RegistrationResponse.password)
+}
+inline std::string* RegistrationResponse::unsafe_arena_release_password() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:blockchain.RegistrationResponse.password)
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  
+  return password_.UnsafeArenaRelease(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      GetArena());
+}
+inline void RegistrationResponse::unsafe_arena_set_allocated_password(
+    std::string* password) {
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  if (password != nullptr) {
+    
+  } else {
+    
+  }
+  password_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      password, GetArena());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:blockchain.RegistrationResponse.password)
+}
+
+// -------------------------------------------------------------------
+
+// AuthorizationRequest
+
+// string name = 1;
+inline void AuthorizationRequest::clear_name() {
+  name_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline const std::string& AuthorizationRequest::name() const {
+  // @@protoc_insertion_point(field_get:blockchain.AuthorizationRequest.name)
+  return _internal_name();
+}
+inline void AuthorizationRequest::set_name(const std::string& value) {
+  _internal_set_name(value);
+  // @@protoc_insertion_point(field_set:blockchain.AuthorizationRequest.name)
+}
+inline std::string* AuthorizationRequest::mutable_name() {
+  // @@protoc_insertion_point(field_mutable:blockchain.AuthorizationRequest.name)
+  return _internal_mutable_name();
+}
+inline const std::string& AuthorizationRequest::_internal_name() const {
+  return name_.Get();
+}
+inline void AuthorizationRequest::_internal_set_name(const std::string& value) {
+  
+  name_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
+}
+inline void AuthorizationRequest::set_name(std::string&& value) {
+  
+  name_.Set(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:blockchain.AuthorizationRequest.name)
+}
+inline void AuthorizationRequest::set_name(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  name_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArena());
+  // @@protoc_insertion_point(field_set_char:blockchain.AuthorizationRequest.name)
+}
+inline void AuthorizationRequest::set_name(const char* value,
+    size_t size) {
+  
+  name_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:blockchain.AuthorizationRequest.name)
+}
+inline std::string* AuthorizationRequest::_internal_mutable_name() {
+  
+  return name_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline std::string* AuthorizationRequest::release_name() {
+  // @@protoc_insertion_point(field_release:blockchain.AuthorizationRequest.name)
+  return name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void AuthorizationRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:blockchain.AuthorizationRequest.name)
+}
+inline std::string* AuthorizationRequest::unsafe_arena_release_name() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:blockchain.AuthorizationRequest.name)
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  
+  return name_.UnsafeArenaRelease(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      GetArena());
+}
+inline void AuthorizationRequest::unsafe_arena_set_allocated_name(
+    std::string* name) {
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      name, GetArena());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:blockchain.AuthorizationRequest.name)
+}
+
+// string password = 2;
+inline void AuthorizationRequest::clear_password() {
+  password_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline const std::string& AuthorizationRequest::password() const {
+  // @@protoc_insertion_point(field_get:blockchain.AuthorizationRequest.password)
+  return _internal_password();
+}
+inline void AuthorizationRequest::set_password(const std::string& value) {
+  _internal_set_password(value);
+  // @@protoc_insertion_point(field_set:blockchain.AuthorizationRequest.password)
+}
+inline std::string* AuthorizationRequest::mutable_password() {
+  // @@protoc_insertion_point(field_mutable:blockchain.AuthorizationRequest.password)
+  return _internal_mutable_password();
+}
+inline const std::string& AuthorizationRequest::_internal_password() const {
+  return password_.Get();
+}
+inline void AuthorizationRequest::_internal_set_password(const std::string& value) {
+  
+  password_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
+}
+inline void AuthorizationRequest::set_password(std::string&& value) {
+  
+  password_.Set(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:blockchain.AuthorizationRequest.password)
+}
+inline void AuthorizationRequest::set_password(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  password_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArena());
+  // @@protoc_insertion_point(field_set_char:blockchain.AuthorizationRequest.password)
+}
+inline void AuthorizationRequest::set_password(const char* value,
+    size_t size) {
+  
+  password_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:blockchain.AuthorizationRequest.password)
+}
+inline std::string* AuthorizationRequest::_internal_mutable_password() {
+  
+  return password_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline std::string* AuthorizationRequest::release_password() {
+  // @@protoc_insertion_point(field_release:blockchain.AuthorizationRequest.password)
+  return password_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void AuthorizationRequest::set_allocated_password(std::string* password) {
+  if (password != nullptr) {
+    
+  } else {
+    
+  }
+  password_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), password,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:blockchain.AuthorizationRequest.password)
+}
+inline std::string* AuthorizationRequest::unsafe_arena_release_password() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:blockchain.AuthorizationRequest.password)
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  
+  return password_.UnsafeArenaRelease(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      GetArena());
+}
+inline void AuthorizationRequest::unsafe_arena_set_allocated_password(
+    std::string* password) {
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  if (password != nullptr) {
+    
+  } else {
+    
+  }
+  password_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      password, GetArena());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:blockchain.AuthorizationRequest.password)
+}
+
+// -------------------------------------------------------------------
+
+// AuthorizationResponse
+
+// string answer = 1;
+inline void AuthorizationResponse::clear_answer() {
+  answer_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline const std::string& AuthorizationResponse::answer() const {
+  // @@protoc_insertion_point(field_get:blockchain.AuthorizationResponse.answer)
+  return _internal_answer();
+}
+inline void AuthorizationResponse::set_answer(const std::string& value) {
+  _internal_set_answer(value);
+  // @@protoc_insertion_point(field_set:blockchain.AuthorizationResponse.answer)
+}
+inline std::string* AuthorizationResponse::mutable_answer() {
+  // @@protoc_insertion_point(field_mutable:blockchain.AuthorizationResponse.answer)
+  return _internal_mutable_answer();
+}
+inline const std::string& AuthorizationResponse::_internal_answer() const {
+  return answer_.Get();
+}
+inline void AuthorizationResponse::_internal_set_answer(const std::string& value) {
+  
+  answer_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
+}
+inline void AuthorizationResponse::set_answer(std::string&& value) {
+  
+  answer_.Set(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:blockchain.AuthorizationResponse.answer)
+}
+inline void AuthorizationResponse::set_answer(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  answer_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArena());
+  // @@protoc_insertion_point(field_set_char:blockchain.AuthorizationResponse.answer)
+}
+inline void AuthorizationResponse::set_answer(const char* value,
+    size_t size) {
+  
+  answer_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:blockchain.AuthorizationResponse.answer)
+}
+inline std::string* AuthorizationResponse::_internal_mutable_answer() {
+  
+  return answer_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline std::string* AuthorizationResponse::release_answer() {
+  // @@protoc_insertion_point(field_release:blockchain.AuthorizationResponse.answer)
+  return answer_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void AuthorizationResponse::set_allocated_answer(std::string* answer) {
+  if (answer != nullptr) {
+    
+  } else {
+    
+  }
+  answer_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), answer,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:blockchain.AuthorizationResponse.answer)
+}
+inline std::string* AuthorizationResponse::unsafe_arena_release_answer() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:blockchain.AuthorizationResponse.answer)
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  
+  return answer_.UnsafeArenaRelease(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      GetArena());
+}
+inline void AuthorizationResponse::unsafe_arena_set_allocated_answer(
+    std::string* answer) {
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  if (answer != nullptr) {
+    
+  } else {
+    
+  }
+  answer_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      answer, GetArena());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:blockchain.AuthorizationResponse.answer)
+}
+
+// -------------------------------------------------------------------
+
+// AddMoneyRequest
+
+// string name = 1;
+inline void AddMoneyRequest::clear_name() {
+  name_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline const std::string& AddMoneyRequest::name() const {
+  // @@protoc_insertion_point(field_get:blockchain.AddMoneyRequest.name)
+  return _internal_name();
+}
+inline void AddMoneyRequest::set_name(const std::string& value) {
+  _internal_set_name(value);
+  // @@protoc_insertion_point(field_set:blockchain.AddMoneyRequest.name)
+}
+inline std::string* AddMoneyRequest::mutable_name() {
+  // @@protoc_insertion_point(field_mutable:blockchain.AddMoneyRequest.name)
+  return _internal_mutable_name();
+}
+inline const std::string& AddMoneyRequest::_internal_name() const {
+  return name_.Get();
+}
+inline void AddMoneyRequest::_internal_set_name(const std::string& value) {
+  
+  name_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
+}
+inline void AddMoneyRequest::set_name(std::string&& value) {
+  
+  name_.Set(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:blockchain.AddMoneyRequest.name)
+}
+inline void AddMoneyRequest::set_name(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  name_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArena());
+  // @@protoc_insertion_point(field_set_char:blockchain.AddMoneyRequest.name)
+}
+inline void AddMoneyRequest::set_name(const char* value,
+    size_t size) {
+  
+  name_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:blockchain.AddMoneyRequest.name)
+}
+inline std::string* AddMoneyRequest::_internal_mutable_name() {
+  
+  return name_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline std::string* AddMoneyRequest::release_name() {
+  // @@protoc_insertion_point(field_release:blockchain.AddMoneyRequest.name)
+  return name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void AddMoneyRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:blockchain.AddMoneyRequest.name)
+}
+inline std::string* AddMoneyRequest::unsafe_arena_release_name() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:blockchain.AddMoneyRequest.name)
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  
+  return name_.UnsafeArenaRelease(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      GetArena());
+}
+inline void AddMoneyRequest::unsafe_arena_set_allocated_name(
+    std::string* name) {
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      name, GetArena());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:blockchain.AddMoneyRequest.name)
+}
+
+// uint32 sum = 2;
+inline void AddMoneyRequest::clear_sum() {
+  sum_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 AddMoneyRequest::_internal_sum() const {
+  return sum_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 AddMoneyRequest::sum() const {
+  // @@protoc_insertion_point(field_get:blockchain.AddMoneyRequest.sum)
+  return _internal_sum();
+}
+inline void AddMoneyRequest::_internal_set_sum(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  sum_ = value;
+}
+inline void AddMoneyRequest::set_sum(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_sum(value);
+  // @@protoc_insertion_point(field_set:blockchain.AddMoneyRequest.sum)
+}
+
+// -------------------------------------------------------------------
+
+// AddMoneyResponse
+
+// string answer = 1;
+inline void AddMoneyResponse::clear_answer() {
+  answer_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline const std::string& AddMoneyResponse::answer() const {
+  // @@protoc_insertion_point(field_get:blockchain.AddMoneyResponse.answer)
+  return _internal_answer();
+}
+inline void AddMoneyResponse::set_answer(const std::string& value) {
+  _internal_set_answer(value);
+  // @@protoc_insertion_point(field_set:blockchain.AddMoneyResponse.answer)
+}
+inline std::string* AddMoneyResponse::mutable_answer() {
+  // @@protoc_insertion_point(field_mutable:blockchain.AddMoneyResponse.answer)
+  return _internal_mutable_answer();
+}
+inline const std::string& AddMoneyResponse::_internal_answer() const {
+  return answer_.Get();
+}
+inline void AddMoneyResponse::_internal_set_answer(const std::string& value) {
+  
+  answer_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
+}
+inline void AddMoneyResponse::set_answer(std::string&& value) {
+  
+  answer_.Set(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:blockchain.AddMoneyResponse.answer)
+}
+inline void AddMoneyResponse::set_answer(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  answer_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArena());
+  // @@protoc_insertion_point(field_set_char:blockchain.AddMoneyResponse.answer)
+}
+inline void AddMoneyResponse::set_answer(const char* value,
+    size_t size) {
+  
+  answer_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:blockchain.AddMoneyResponse.answer)
+}
+inline std::string* AddMoneyResponse::_internal_mutable_answer() {
+  
+  return answer_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline std::string* AddMoneyResponse::release_answer() {
+  // @@protoc_insertion_point(field_release:blockchain.AddMoneyResponse.answer)
+  return answer_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void AddMoneyResponse::set_allocated_answer(std::string* answer) {
+  if (answer != nullptr) {
+    
+  } else {
+    
+  }
+  answer_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), answer,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:blockchain.AddMoneyResponse.answer)
+}
+inline std::string* AddMoneyResponse::unsafe_arena_release_answer() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:blockchain.AddMoneyResponse.answer)
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  
+  return answer_.UnsafeArenaRelease(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      GetArena());
+}
+inline void AddMoneyResponse::unsafe_arena_set_allocated_answer(
+    std::string* answer) {
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  if (answer != nullptr) {
+    
+  } else {
+    
+  }
+  answer_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      answer, GetArena());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:blockchain.AddMoneyResponse.answer)
+}
+
+// -------------------------------------------------------------------
+
+// InfoBalanceRequest
+
+// string name = 1;
+inline void InfoBalanceRequest::clear_name() {
+  name_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline const std::string& InfoBalanceRequest::name() const {
+  // @@protoc_insertion_point(field_get:blockchain.InfoBalanceRequest.name)
+  return _internal_name();
+}
+inline void InfoBalanceRequest::set_name(const std::string& value) {
+  _internal_set_name(value);
+  // @@protoc_insertion_point(field_set:blockchain.InfoBalanceRequest.name)
+}
+inline std::string* InfoBalanceRequest::mutable_name() {
+  // @@protoc_insertion_point(field_mutable:blockchain.InfoBalanceRequest.name)
+  return _internal_mutable_name();
+}
+inline const std::string& InfoBalanceRequest::_internal_name() const {
+  return name_.Get();
+}
+inline void InfoBalanceRequest::_internal_set_name(const std::string& value) {
+  
+  name_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
+}
+inline void InfoBalanceRequest::set_name(std::string&& value) {
+  
+  name_.Set(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:blockchain.InfoBalanceRequest.name)
+}
+inline void InfoBalanceRequest::set_name(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  name_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArena());
+  // @@protoc_insertion_point(field_set_char:blockchain.InfoBalanceRequest.name)
+}
+inline void InfoBalanceRequest::set_name(const char* value,
+    size_t size) {
+  
+  name_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:blockchain.InfoBalanceRequest.name)
+}
+inline std::string* InfoBalanceRequest::_internal_mutable_name() {
+  
+  return name_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline std::string* InfoBalanceRequest::release_name() {
+  // @@protoc_insertion_point(field_release:blockchain.InfoBalanceRequest.name)
+  return name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void InfoBalanceRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:blockchain.InfoBalanceRequest.name)
+}
+inline std::string* InfoBalanceRequest::unsafe_arena_release_name() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:blockchain.InfoBalanceRequest.name)
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  
+  return name_.UnsafeArenaRelease(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      GetArena());
+}
+inline void InfoBalanceRequest::unsafe_arena_set_allocated_name(
+    std::string* name) {
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      name, GetArena());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:blockchain.InfoBalanceRequest.name)
+}
+
+// -------------------------------------------------------------------
+
+// InfoBalanceResponse
+
+// string sum = 1;
+inline void InfoBalanceResponse::clear_sum() {
+  sum_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline const std::string& InfoBalanceResponse::sum() const {
+  // @@protoc_insertion_point(field_get:blockchain.InfoBalanceResponse.sum)
+  return _internal_sum();
+}
+inline void InfoBalanceResponse::set_sum(const std::string& value) {
+  _internal_set_sum(value);
+  // @@protoc_insertion_point(field_set:blockchain.InfoBalanceResponse.sum)
+}
+inline std::string* InfoBalanceResponse::mutable_sum() {
+  // @@protoc_insertion_point(field_mutable:blockchain.InfoBalanceResponse.sum)
+  return _internal_mutable_sum();
+}
+inline const std::string& InfoBalanceResponse::_internal_sum() const {
+  return sum_.Get();
+}
+inline void InfoBalanceResponse::_internal_set_sum(const std::string& value) {
+  
+  sum_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
+}
+inline void InfoBalanceResponse::set_sum(std::string&& value) {
+  
+  sum_.Set(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:blockchain.InfoBalanceResponse.sum)
+}
+inline void InfoBalanceResponse::set_sum(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  sum_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArena());
+  // @@protoc_insertion_point(field_set_char:blockchain.InfoBalanceResponse.sum)
+}
+inline void InfoBalanceResponse::set_sum(const char* value,
+    size_t size) {
+  
+  sum_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:blockchain.InfoBalanceResponse.sum)
+}
+inline std::string* InfoBalanceResponse::_internal_mutable_sum() {
+  
+  return sum_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline std::string* InfoBalanceResponse::release_sum() {
+  // @@protoc_insertion_point(field_release:blockchain.InfoBalanceResponse.sum)
+  return sum_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void InfoBalanceResponse::set_allocated_sum(std::string* sum) {
+  if (sum != nullptr) {
+    
+  } else {
+    
+  }
+  sum_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), sum,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:blockchain.InfoBalanceResponse.sum)
+}
+inline std::string* InfoBalanceResponse::unsafe_arena_release_sum() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:blockchain.InfoBalanceResponse.sum)
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  
+  return sum_.UnsafeArenaRelease(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      GetArena());
+}
+inline void InfoBalanceResponse::unsafe_arena_set_allocated_sum(
+    std::string* sum) {
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  if (sum != nullptr) {
+    
+  } else {
+    
+  }
+  sum_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      sum, GetArena());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:blockchain.InfoBalanceResponse.sum)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

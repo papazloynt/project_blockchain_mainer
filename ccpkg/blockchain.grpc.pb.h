@@ -43,6 +43,34 @@ class Blockchain final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::blockchain::TransactionResponse>> PrepareAsyncTransaction(::grpc::ClientContext* context, const ::blockchain::TransactionRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::blockchain::TransactionResponse>>(PrepareAsyncTransactionRaw(context, request, cq));
     }
+    virtual ::grpc::Status Registration(::grpc::ClientContext* context, const ::blockchain::RegistrationRequest& request, ::blockchain::RegistrationResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::blockchain::RegistrationResponse>> AsyncRegistration(::grpc::ClientContext* context, const ::blockchain::RegistrationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::blockchain::RegistrationResponse>>(AsyncRegistrationRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::blockchain::RegistrationResponse>> PrepareAsyncRegistration(::grpc::ClientContext* context, const ::blockchain::RegistrationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::blockchain::RegistrationResponse>>(PrepareAsyncRegistrationRaw(context, request, cq));
+    }
+    virtual ::grpc::Status Authorization(::grpc::ClientContext* context, const ::blockchain::AuthorizationRequest& request, ::blockchain::AuthorizationResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::blockchain::AuthorizationResponse>> AsyncAuthorization(::grpc::ClientContext* context, const ::blockchain::AuthorizationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::blockchain::AuthorizationResponse>>(AsyncAuthorizationRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::blockchain::AuthorizationResponse>> PrepareAsyncAuthorization(::grpc::ClientContext* context, const ::blockchain::AuthorizationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::blockchain::AuthorizationResponse>>(PrepareAsyncAuthorizationRaw(context, request, cq));
+    }
+    virtual ::grpc::Status AddMoney(::grpc::ClientContext* context, const ::blockchain::AddMoneyRequest& request, ::blockchain::AddMoneyResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::blockchain::AddMoneyResponse>> AsyncAddMoney(::grpc::ClientContext* context, const ::blockchain::AddMoneyRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::blockchain::AddMoneyResponse>>(AsyncAddMoneyRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::blockchain::AddMoneyResponse>> PrepareAsyncAddMoney(::grpc::ClientContext* context, const ::blockchain::AddMoneyRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::blockchain::AddMoneyResponse>>(PrepareAsyncAddMoneyRaw(context, request, cq));
+    }
+    virtual ::grpc::Status InfoBalance(::grpc::ClientContext* context, const ::blockchain::InfoBalanceRequest& request, ::blockchain::InfoBalanceResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::blockchain::InfoBalanceResponse>> AsyncInfoBalance(::grpc::ClientContext* context, const ::blockchain::InfoBalanceRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::blockchain::InfoBalanceResponse>>(AsyncInfoBalanceRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::blockchain::InfoBalanceResponse>> PrepareAsyncInfoBalance(::grpc::ClientContext* context, const ::blockchain::InfoBalanceRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::blockchain::InfoBalanceResponse>>(PrepareAsyncInfoBalanceRaw(context, request, cq));
+    }
     class experimental_async_interface {
      public:
       virtual ~experimental_async_interface() {}
@@ -58,6 +86,54 @@ class Blockchain final {
       #else
       virtual void Transaction(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::blockchain::TransactionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
+      virtual void Registration(::grpc::ClientContext* context, const ::blockchain::RegistrationRequest* request, ::blockchain::RegistrationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Registration(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::blockchain::RegistrationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void Registration(::grpc::ClientContext* context, const ::blockchain::RegistrationRequest* request, ::blockchain::RegistrationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void Registration(::grpc::ClientContext* context, const ::blockchain::RegistrationRequest* request, ::blockchain::RegistrationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void Registration(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::blockchain::RegistrationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void Registration(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::blockchain::RegistrationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      virtual void Authorization(::grpc::ClientContext* context, const ::blockchain::AuthorizationRequest* request, ::blockchain::AuthorizationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Authorization(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::blockchain::AuthorizationResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void Authorization(::grpc::ClientContext* context, const ::blockchain::AuthorizationRequest* request, ::blockchain::AuthorizationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void Authorization(::grpc::ClientContext* context, const ::blockchain::AuthorizationRequest* request, ::blockchain::AuthorizationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void Authorization(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::blockchain::AuthorizationResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void Authorization(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::blockchain::AuthorizationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      virtual void AddMoney(::grpc::ClientContext* context, const ::blockchain::AddMoneyRequest* request, ::blockchain::AddMoneyResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void AddMoney(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::blockchain::AddMoneyResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void AddMoney(::grpc::ClientContext* context, const ::blockchain::AddMoneyRequest* request, ::blockchain::AddMoneyResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void AddMoney(::grpc::ClientContext* context, const ::blockchain::AddMoneyRequest* request, ::blockchain::AddMoneyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void AddMoney(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::blockchain::AddMoneyResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void AddMoney(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::blockchain::AddMoneyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      virtual void InfoBalance(::grpc::ClientContext* context, const ::blockchain::InfoBalanceRequest* request, ::blockchain::InfoBalanceResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void InfoBalance(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::blockchain::InfoBalanceResponse* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void InfoBalance(::grpc::ClientContext* context, const ::blockchain::InfoBalanceRequest* request, ::blockchain::InfoBalanceResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void InfoBalance(::grpc::ClientContext* context, const ::blockchain::InfoBalanceRequest* request, ::blockchain::InfoBalanceResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void InfoBalance(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::blockchain::InfoBalanceResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void InfoBalance(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::blockchain::InfoBalanceResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
     };
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     typedef class experimental_async_interface async_interface;
@@ -69,6 +145,14 @@ class Blockchain final {
   private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::blockchain::TransactionResponse>* AsyncTransactionRaw(::grpc::ClientContext* context, const ::blockchain::TransactionRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::blockchain::TransactionResponse>* PrepareAsyncTransactionRaw(::grpc::ClientContext* context, const ::blockchain::TransactionRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::blockchain::RegistrationResponse>* AsyncRegistrationRaw(::grpc::ClientContext* context, const ::blockchain::RegistrationRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::blockchain::RegistrationResponse>* PrepareAsyncRegistrationRaw(::grpc::ClientContext* context, const ::blockchain::RegistrationRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::blockchain::AuthorizationResponse>* AsyncAuthorizationRaw(::grpc::ClientContext* context, const ::blockchain::AuthorizationRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::blockchain::AuthorizationResponse>* PrepareAsyncAuthorizationRaw(::grpc::ClientContext* context, const ::blockchain::AuthorizationRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::blockchain::AddMoneyResponse>* AsyncAddMoneyRaw(::grpc::ClientContext* context, const ::blockchain::AddMoneyRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::blockchain::AddMoneyResponse>* PrepareAsyncAddMoneyRaw(::grpc::ClientContext* context, const ::blockchain::AddMoneyRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::blockchain::InfoBalanceResponse>* AsyncInfoBalanceRaw(::grpc::ClientContext* context, const ::blockchain::InfoBalanceRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::blockchain::InfoBalanceResponse>* PrepareAsyncInfoBalanceRaw(::grpc::ClientContext* context, const ::blockchain::InfoBalanceRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -79,6 +163,34 @@ class Blockchain final {
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::blockchain::TransactionResponse>> PrepareAsyncTransaction(::grpc::ClientContext* context, const ::blockchain::TransactionRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::blockchain::TransactionResponse>>(PrepareAsyncTransactionRaw(context, request, cq));
+    }
+    ::grpc::Status Registration(::grpc::ClientContext* context, const ::blockchain::RegistrationRequest& request, ::blockchain::RegistrationResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::blockchain::RegistrationResponse>> AsyncRegistration(::grpc::ClientContext* context, const ::blockchain::RegistrationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::blockchain::RegistrationResponse>>(AsyncRegistrationRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::blockchain::RegistrationResponse>> PrepareAsyncRegistration(::grpc::ClientContext* context, const ::blockchain::RegistrationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::blockchain::RegistrationResponse>>(PrepareAsyncRegistrationRaw(context, request, cq));
+    }
+    ::grpc::Status Authorization(::grpc::ClientContext* context, const ::blockchain::AuthorizationRequest& request, ::blockchain::AuthorizationResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::blockchain::AuthorizationResponse>> AsyncAuthorization(::grpc::ClientContext* context, const ::blockchain::AuthorizationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::blockchain::AuthorizationResponse>>(AsyncAuthorizationRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::blockchain::AuthorizationResponse>> PrepareAsyncAuthorization(::grpc::ClientContext* context, const ::blockchain::AuthorizationRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::blockchain::AuthorizationResponse>>(PrepareAsyncAuthorizationRaw(context, request, cq));
+    }
+    ::grpc::Status AddMoney(::grpc::ClientContext* context, const ::blockchain::AddMoneyRequest& request, ::blockchain::AddMoneyResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::blockchain::AddMoneyResponse>> AsyncAddMoney(::grpc::ClientContext* context, const ::blockchain::AddMoneyRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::blockchain::AddMoneyResponse>>(AsyncAddMoneyRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::blockchain::AddMoneyResponse>> PrepareAsyncAddMoney(::grpc::ClientContext* context, const ::blockchain::AddMoneyRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::blockchain::AddMoneyResponse>>(PrepareAsyncAddMoneyRaw(context, request, cq));
+    }
+    ::grpc::Status InfoBalance(::grpc::ClientContext* context, const ::blockchain::InfoBalanceRequest& request, ::blockchain::InfoBalanceResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::blockchain::InfoBalanceResponse>> AsyncInfoBalance(::grpc::ClientContext* context, const ::blockchain::InfoBalanceRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::blockchain::InfoBalanceResponse>>(AsyncInfoBalanceRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::blockchain::InfoBalanceResponse>> PrepareAsyncInfoBalance(::grpc::ClientContext* context, const ::blockchain::InfoBalanceRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::blockchain::InfoBalanceResponse>>(PrepareAsyncInfoBalanceRaw(context, request, cq));
     }
     class experimental_async final :
       public StubInterface::experimental_async_interface {
@@ -95,6 +207,54 @@ class Blockchain final {
       #else
       void Transaction(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::blockchain::TransactionResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
+      void Registration(::grpc::ClientContext* context, const ::blockchain::RegistrationRequest* request, ::blockchain::RegistrationResponse* response, std::function<void(::grpc::Status)>) override;
+      void Registration(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::blockchain::RegistrationResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void Registration(::grpc::ClientContext* context, const ::blockchain::RegistrationRequest* request, ::blockchain::RegistrationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void Registration(::grpc::ClientContext* context, const ::blockchain::RegistrationRequest* request, ::blockchain::RegistrationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void Registration(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::blockchain::RegistrationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void Registration(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::blockchain::RegistrationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void Authorization(::grpc::ClientContext* context, const ::blockchain::AuthorizationRequest* request, ::blockchain::AuthorizationResponse* response, std::function<void(::grpc::Status)>) override;
+      void Authorization(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::blockchain::AuthorizationResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void Authorization(::grpc::ClientContext* context, const ::blockchain::AuthorizationRequest* request, ::blockchain::AuthorizationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void Authorization(::grpc::ClientContext* context, const ::blockchain::AuthorizationRequest* request, ::blockchain::AuthorizationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void Authorization(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::blockchain::AuthorizationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void Authorization(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::blockchain::AuthorizationResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void AddMoney(::grpc::ClientContext* context, const ::blockchain::AddMoneyRequest* request, ::blockchain::AddMoneyResponse* response, std::function<void(::grpc::Status)>) override;
+      void AddMoney(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::blockchain::AddMoneyResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void AddMoney(::grpc::ClientContext* context, const ::blockchain::AddMoneyRequest* request, ::blockchain::AddMoneyResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void AddMoney(::grpc::ClientContext* context, const ::blockchain::AddMoneyRequest* request, ::blockchain::AddMoneyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void AddMoney(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::blockchain::AddMoneyResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void AddMoney(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::blockchain::AddMoneyResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void InfoBalance(::grpc::ClientContext* context, const ::blockchain::InfoBalanceRequest* request, ::blockchain::InfoBalanceResponse* response, std::function<void(::grpc::Status)>) override;
+      void InfoBalance(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::blockchain::InfoBalanceResponse* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void InfoBalance(::grpc::ClientContext* context, const ::blockchain::InfoBalanceRequest* request, ::blockchain::InfoBalanceResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void InfoBalance(::grpc::ClientContext* context, const ::blockchain::InfoBalanceRequest* request, ::blockchain::InfoBalanceResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void InfoBalance(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::blockchain::InfoBalanceResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void InfoBalance(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::blockchain::InfoBalanceResponse* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
      private:
       friend class Stub;
       explicit experimental_async(Stub* stub): stub_(stub) { }
@@ -108,7 +268,19 @@ class Blockchain final {
     class experimental_async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::blockchain::TransactionResponse>* AsyncTransactionRaw(::grpc::ClientContext* context, const ::blockchain::TransactionRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::blockchain::TransactionResponse>* PrepareAsyncTransactionRaw(::grpc::ClientContext* context, const ::blockchain::TransactionRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::blockchain::RegistrationResponse>* AsyncRegistrationRaw(::grpc::ClientContext* context, const ::blockchain::RegistrationRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::blockchain::RegistrationResponse>* PrepareAsyncRegistrationRaw(::grpc::ClientContext* context, const ::blockchain::RegistrationRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::blockchain::AuthorizationResponse>* AsyncAuthorizationRaw(::grpc::ClientContext* context, const ::blockchain::AuthorizationRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::blockchain::AuthorizationResponse>* PrepareAsyncAuthorizationRaw(::grpc::ClientContext* context, const ::blockchain::AuthorizationRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::blockchain::AddMoneyResponse>* AsyncAddMoneyRaw(::grpc::ClientContext* context, const ::blockchain::AddMoneyRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::blockchain::AddMoneyResponse>* PrepareAsyncAddMoneyRaw(::grpc::ClientContext* context, const ::blockchain::AddMoneyRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::blockchain::InfoBalanceResponse>* AsyncInfoBalanceRaw(::grpc::ClientContext* context, const ::blockchain::InfoBalanceRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::blockchain::InfoBalanceResponse>* PrepareAsyncInfoBalanceRaw(::grpc::ClientContext* context, const ::blockchain::InfoBalanceRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_Transaction_;
+    const ::grpc::internal::RpcMethod rpcmethod_Registration_;
+    const ::grpc::internal::RpcMethod rpcmethod_Authorization_;
+    const ::grpc::internal::RpcMethod rpcmethod_AddMoney_;
+    const ::grpc::internal::RpcMethod rpcmethod_InfoBalance_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -117,6 +289,10 @@ class Blockchain final {
     Service();
     virtual ~Service();
     virtual ::grpc::Status Transaction(::grpc::ServerContext* context, const ::blockchain::TransactionRequest* request, ::blockchain::TransactionResponse* response);
+    virtual ::grpc::Status Registration(::grpc::ServerContext* context, const ::blockchain::RegistrationRequest* request, ::blockchain::RegistrationResponse* response);
+    virtual ::grpc::Status Authorization(::grpc::ServerContext* context, const ::blockchain::AuthorizationRequest* request, ::blockchain::AuthorizationResponse* response);
+    virtual ::grpc::Status AddMoney(::grpc::ServerContext* context, const ::blockchain::AddMoneyRequest* request, ::blockchain::AddMoneyResponse* response);
+    virtual ::grpc::Status InfoBalance(::grpc::ServerContext* context, const ::blockchain::InfoBalanceRequest* request, ::blockchain::InfoBalanceResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_Transaction : public BaseClass {
@@ -138,7 +314,87 @@ class Blockchain final {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_Transaction<Service > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_Registration : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Registration() {
+      ::grpc::Service::MarkMethodAsync(1);
+    }
+    ~WithAsyncMethod_Registration() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Registration(::grpc::ServerContext* /*context*/, const ::blockchain::RegistrationRequest* /*request*/, ::blockchain::RegistrationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestRegistration(::grpc::ServerContext* context, ::blockchain::RegistrationRequest* request, ::grpc::ServerAsyncResponseWriter< ::blockchain::RegistrationResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Authorization : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Authorization() {
+      ::grpc::Service::MarkMethodAsync(2);
+    }
+    ~WithAsyncMethod_Authorization() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Authorization(::grpc::ServerContext* /*context*/, const ::blockchain::AuthorizationRequest* /*request*/, ::blockchain::AuthorizationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestAuthorization(::grpc::ServerContext* context, ::blockchain::AuthorizationRequest* request, ::grpc::ServerAsyncResponseWriter< ::blockchain::AuthorizationResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_AddMoney : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_AddMoney() {
+      ::grpc::Service::MarkMethodAsync(3);
+    }
+    ~WithAsyncMethod_AddMoney() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AddMoney(::grpc::ServerContext* /*context*/, const ::blockchain::AddMoneyRequest* /*request*/, ::blockchain::AddMoneyResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestAddMoney(::grpc::ServerContext* context, ::blockchain::AddMoneyRequest* request, ::grpc::ServerAsyncResponseWriter< ::blockchain::AddMoneyResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_InfoBalance : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_InfoBalance() {
+      ::grpc::Service::MarkMethodAsync(4);
+    }
+    ~WithAsyncMethod_InfoBalance() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InfoBalance(::grpc::ServerContext* /*context*/, const ::blockchain::InfoBalanceRequest* /*request*/, ::blockchain::InfoBalanceResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestInfoBalance(::grpc::ServerContext* context, ::blockchain::InfoBalanceRequest* request, ::grpc::ServerAsyncResponseWriter< ::blockchain::InfoBalanceResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_Transaction<WithAsyncMethod_Registration<WithAsyncMethod_Authorization<WithAsyncMethod_AddMoney<WithAsyncMethod_InfoBalance<Service > > > > > AsyncService;
   template <class BaseClass>
   class ExperimentalWithCallbackMethod_Transaction : public BaseClass {
    private:
@@ -186,11 +442,199 @@ class Blockchain final {
     #endif
       { return nullptr; }
   };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_Registration : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_Registration() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(1,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::blockchain::RegistrationRequest, ::blockchain::RegistrationResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::blockchain::RegistrationRequest* request, ::blockchain::RegistrationResponse* response) { return this->Registration(context, request, response); }));}
+    void SetMessageAllocatorFor_Registration(
+        ::grpc::experimental::MessageAllocator< ::blockchain::RegistrationRequest, ::blockchain::RegistrationResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(1);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::blockchain::RegistrationRequest, ::blockchain::RegistrationResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_Registration() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Registration(::grpc::ServerContext* /*context*/, const ::blockchain::RegistrationRequest* /*request*/, ::blockchain::RegistrationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* Registration(
+      ::grpc::CallbackServerContext* /*context*/, const ::blockchain::RegistrationRequest* /*request*/, ::blockchain::RegistrationResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* Registration(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::blockchain::RegistrationRequest* /*request*/, ::blockchain::RegistrationResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_Authorization : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_Authorization() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(2,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::blockchain::AuthorizationRequest, ::blockchain::AuthorizationResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::blockchain::AuthorizationRequest* request, ::blockchain::AuthorizationResponse* response) { return this->Authorization(context, request, response); }));}
+    void SetMessageAllocatorFor_Authorization(
+        ::grpc::experimental::MessageAllocator< ::blockchain::AuthorizationRequest, ::blockchain::AuthorizationResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(2);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::blockchain::AuthorizationRequest, ::blockchain::AuthorizationResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_Authorization() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Authorization(::grpc::ServerContext* /*context*/, const ::blockchain::AuthorizationRequest* /*request*/, ::blockchain::AuthorizationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* Authorization(
+      ::grpc::CallbackServerContext* /*context*/, const ::blockchain::AuthorizationRequest* /*request*/, ::blockchain::AuthorizationResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* Authorization(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::blockchain::AuthorizationRequest* /*request*/, ::blockchain::AuthorizationResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_AddMoney : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_AddMoney() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(3,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::blockchain::AddMoneyRequest, ::blockchain::AddMoneyResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::blockchain::AddMoneyRequest* request, ::blockchain::AddMoneyResponse* response) { return this->AddMoney(context, request, response); }));}
+    void SetMessageAllocatorFor_AddMoney(
+        ::grpc::experimental::MessageAllocator< ::blockchain::AddMoneyRequest, ::blockchain::AddMoneyResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(3);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::blockchain::AddMoneyRequest, ::blockchain::AddMoneyResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_AddMoney() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AddMoney(::grpc::ServerContext* /*context*/, const ::blockchain::AddMoneyRequest* /*request*/, ::blockchain::AddMoneyResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* AddMoney(
+      ::grpc::CallbackServerContext* /*context*/, const ::blockchain::AddMoneyRequest* /*request*/, ::blockchain::AddMoneyResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* AddMoney(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::blockchain::AddMoneyRequest* /*request*/, ::blockchain::AddMoneyResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_InfoBalance : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_InfoBalance() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(4,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::blockchain::InfoBalanceRequest, ::blockchain::InfoBalanceResponse>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::blockchain::InfoBalanceRequest* request, ::blockchain::InfoBalanceResponse* response) { return this->InfoBalance(context, request, response); }));}
+    void SetMessageAllocatorFor_InfoBalance(
+        ::grpc::experimental::MessageAllocator< ::blockchain::InfoBalanceRequest, ::blockchain::InfoBalanceResponse>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(4);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::blockchain::InfoBalanceRequest, ::blockchain::InfoBalanceResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_InfoBalance() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InfoBalance(::grpc::ServerContext* /*context*/, const ::blockchain::InfoBalanceRequest* /*request*/, ::blockchain::InfoBalanceResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* InfoBalance(
+      ::grpc::CallbackServerContext* /*context*/, const ::blockchain::InfoBalanceRequest* /*request*/, ::blockchain::InfoBalanceResponse* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* InfoBalance(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::blockchain::InfoBalanceRequest* /*request*/, ::blockchain::InfoBalanceResponse* /*response*/)
+    #endif
+      { return nullptr; }
+  };
   #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-  typedef ExperimentalWithCallbackMethod_Transaction<Service > CallbackService;
+  typedef ExperimentalWithCallbackMethod_Transaction<ExperimentalWithCallbackMethod_Registration<ExperimentalWithCallbackMethod_Authorization<ExperimentalWithCallbackMethod_AddMoney<ExperimentalWithCallbackMethod_InfoBalance<Service > > > > > CallbackService;
   #endif
 
-  typedef ExperimentalWithCallbackMethod_Transaction<Service > ExperimentalCallbackService;
+  typedef ExperimentalWithCallbackMethod_Transaction<ExperimentalWithCallbackMethod_Registration<ExperimentalWithCallbackMethod_Authorization<ExperimentalWithCallbackMethod_AddMoney<ExperimentalWithCallbackMethod_InfoBalance<Service > > > > > ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_Transaction : public BaseClass {
    private:
@@ -204,6 +648,74 @@ class Blockchain final {
     }
     // disable synchronous version of this method
     ::grpc::Status Transaction(::grpc::ServerContext* /*context*/, const ::blockchain::TransactionRequest* /*request*/, ::blockchain::TransactionResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Registration : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Registration() {
+      ::grpc::Service::MarkMethodGeneric(1);
+    }
+    ~WithGenericMethod_Registration() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Registration(::grpc::ServerContext* /*context*/, const ::blockchain::RegistrationRequest* /*request*/, ::blockchain::RegistrationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Authorization : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Authorization() {
+      ::grpc::Service::MarkMethodGeneric(2);
+    }
+    ~WithGenericMethod_Authorization() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Authorization(::grpc::ServerContext* /*context*/, const ::blockchain::AuthorizationRequest* /*request*/, ::blockchain::AuthorizationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_AddMoney : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_AddMoney() {
+      ::grpc::Service::MarkMethodGeneric(3);
+    }
+    ~WithGenericMethod_AddMoney() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AddMoney(::grpc::ServerContext* /*context*/, const ::blockchain::AddMoneyRequest* /*request*/, ::blockchain::AddMoneyResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_InfoBalance : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_InfoBalance() {
+      ::grpc::Service::MarkMethodGeneric(4);
+    }
+    ~WithGenericMethod_InfoBalance() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InfoBalance(::grpc::ServerContext* /*context*/, const ::blockchain::InfoBalanceRequest* /*request*/, ::blockchain::InfoBalanceResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -226,6 +738,86 @@ class Blockchain final {
     }
     void RequestTransaction(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Registration : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Registration() {
+      ::grpc::Service::MarkMethodRaw(1);
+    }
+    ~WithRawMethod_Registration() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Registration(::grpc::ServerContext* /*context*/, const ::blockchain::RegistrationRequest* /*request*/, ::blockchain::RegistrationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestRegistration(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Authorization : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Authorization() {
+      ::grpc::Service::MarkMethodRaw(2);
+    }
+    ~WithRawMethod_Authorization() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Authorization(::grpc::ServerContext* /*context*/, const ::blockchain::AuthorizationRequest* /*request*/, ::blockchain::AuthorizationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestAuthorization(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_AddMoney : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_AddMoney() {
+      ::grpc::Service::MarkMethodRaw(3);
+    }
+    ~WithRawMethod_AddMoney() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AddMoney(::grpc::ServerContext* /*context*/, const ::blockchain::AddMoneyRequest* /*request*/, ::blockchain::AddMoneyResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestAddMoney(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_InfoBalance : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_InfoBalance() {
+      ::grpc::Service::MarkMethodRaw(4);
+    }
+    ~WithRawMethod_InfoBalance() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InfoBalance(::grpc::ServerContext* /*context*/, const ::blockchain::InfoBalanceRequest* /*request*/, ::blockchain::InfoBalanceResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestInfoBalance(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -267,6 +859,158 @@ class Blockchain final {
       { return nullptr; }
   };
   template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_Registration : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_Registration() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(1,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Registration(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_Registration() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Registration(::grpc::ServerContext* /*context*/, const ::blockchain::RegistrationRequest* /*request*/, ::blockchain::RegistrationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* Registration(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* Registration(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_Authorization : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_Authorization() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(2,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Authorization(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_Authorization() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Authorization(::grpc::ServerContext* /*context*/, const ::blockchain::AuthorizationRequest* /*request*/, ::blockchain::AuthorizationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* Authorization(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* Authorization(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_AddMoney : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_AddMoney() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(3,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->AddMoney(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_AddMoney() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AddMoney(::grpc::ServerContext* /*context*/, const ::blockchain::AddMoneyRequest* /*request*/, ::blockchain::AddMoneyResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* AddMoney(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* AddMoney(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_InfoBalance : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_InfoBalance() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(4,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->InfoBalance(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_InfoBalance() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status InfoBalance(::grpc::ServerContext* /*context*/, const ::blockchain::InfoBalanceRequest* /*request*/, ::blockchain::InfoBalanceResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* InfoBalance(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* InfoBalance(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_Transaction : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -293,9 +1037,117 @@ class Blockchain final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedTransaction(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::blockchain::TransactionRequest,::blockchain::TransactionResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_Transaction<Service > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Registration : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Registration() {
+      ::grpc::Service::MarkMethodStreamed(1,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::blockchain::RegistrationRequest, ::blockchain::RegistrationResponse>(
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
+                     ::blockchain::RegistrationRequest, ::blockchain::RegistrationResponse>* streamer) {
+                       return this->StreamedRegistration(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Registration() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Registration(::grpc::ServerContext* /*context*/, const ::blockchain::RegistrationRequest* /*request*/, ::blockchain::RegistrationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedRegistration(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::blockchain::RegistrationRequest,::blockchain::RegistrationResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Authorization : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Authorization() {
+      ::grpc::Service::MarkMethodStreamed(2,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::blockchain::AuthorizationRequest, ::blockchain::AuthorizationResponse>(
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
+                     ::blockchain::AuthorizationRequest, ::blockchain::AuthorizationResponse>* streamer) {
+                       return this->StreamedAuthorization(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Authorization() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Authorization(::grpc::ServerContext* /*context*/, const ::blockchain::AuthorizationRequest* /*request*/, ::blockchain::AuthorizationResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedAuthorization(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::blockchain::AuthorizationRequest,::blockchain::AuthorizationResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_AddMoney : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_AddMoney() {
+      ::grpc::Service::MarkMethodStreamed(3,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::blockchain::AddMoneyRequest, ::blockchain::AddMoneyResponse>(
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
+                     ::blockchain::AddMoneyRequest, ::blockchain::AddMoneyResponse>* streamer) {
+                       return this->StreamedAddMoney(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_AddMoney() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status AddMoney(::grpc::ServerContext* /*context*/, const ::blockchain::AddMoneyRequest* /*request*/, ::blockchain::AddMoneyResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedAddMoney(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::blockchain::AddMoneyRequest,::blockchain::AddMoneyResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_InfoBalance : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_InfoBalance() {
+      ::grpc::Service::MarkMethodStreamed(4,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::blockchain::InfoBalanceRequest, ::blockchain::InfoBalanceResponse>(
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
+                     ::blockchain::InfoBalanceRequest, ::blockchain::InfoBalanceResponse>* streamer) {
+                       return this->StreamedInfoBalance(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_InfoBalance() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status InfoBalance(::grpc::ServerContext* /*context*/, const ::blockchain::InfoBalanceRequest* /*request*/, ::blockchain::InfoBalanceResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedInfoBalance(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::blockchain::InfoBalanceRequest,::blockchain::InfoBalanceResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_Transaction<WithStreamedUnaryMethod_Registration<WithStreamedUnaryMethod_Authorization<WithStreamedUnaryMethod_AddMoney<WithStreamedUnaryMethod_InfoBalance<Service > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_Transaction<Service > StreamedService;
+  typedef WithStreamedUnaryMethod_Transaction<WithStreamedUnaryMethod_Registration<WithStreamedUnaryMethod_Authorization<WithStreamedUnaryMethod_AddMoney<WithStreamedUnaryMethod_InfoBalance<Service > > > > > StreamedService;
 };
 
 }  // namespace blockchain

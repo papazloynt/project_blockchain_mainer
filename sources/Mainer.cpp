@@ -18,7 +18,8 @@ Mainer::Mainer() : db(), b_c() {
       db.InsertPersonDataBase(name, sh_mutex);
   std::cout << "Your password: " << password << std::endl
             << "Please do not lose it, otherwise "
-               "you will lose access to the wallet.";
+               "you will lose access to the wallet."
+            << std::endl;
   //Проверка на хакерство
   std::thread check(&Mainer::HackerProtection, this);
   check.detach();
