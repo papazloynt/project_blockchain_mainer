@@ -11,8 +11,33 @@ service Blockchain{
       body: "*"
     };
   }
+  rpc Registration(RegistrationRequest) returns (RegistrationResponse) {
+    option (google.api.http) = {
+      post: "/v1/registration"
+      body: "*"
+    };
+  }
+  rpc Authorization(AuthorizationRequest) returns (AuthorizationResponse) {
+    option (google.api.http) = {
+      post: "/v1/authorization"
+      body: "*"
+    };
+  }
+  rpc AddMoney(AddMoneyRequest) returns (AddMoneyResponse) {
+    option (google.api.http) = {
+      post: "/v1/addmoney"
+      body: "*"
+    };
+  }
+  rpc InfoBalance(InfoBalanceRequest) returns (InfoBalanceResponse) {
+    option (google.api.http) = {
+      post: "/v1/infobalance"
+      body: "*"
+    };
+  }
 }
 
+// Transac
 message TransactionStruct {
   string client_from = 1;
   string client_to = 2;
@@ -25,4 +50,42 @@ message TransactionRequest {
 
 message TransactionResponse{
   string answer = 1;
+}
+
+// Registr
+message RegistrationRequest{
+  string name = 1;
+}
+
+message RegistrationResponse{
+  string password = 1;
+}
+
+// Authorize
+message AuthorizationRequest{
+  string name = 1;
+  string password = 2;
+}
+
+message AuthorizationResponse{
+  string answer = 1;
+}
+
+// Add Money
+message AddMoneyRequest{
+  string name = 1;
+  uint32 sum = 2;
+}
+
+message AddMoneyResponse{
+  string answer = 1;
+}
+
+// Info about balance
+message InfoBalanceRequest{
+  string name = 1;
+}
+
+message InfoBalanceResponse{
+  string sum = 1;
 }

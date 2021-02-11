@@ -112,7 +112,8 @@ target_link_libraries(blockchain
 # Service Mainer
 add_executable(service_mainer
         ${CMAKE_CURRENT_SOURCE_DIR}/sources/main.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/sources/transaction.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/sources/DBConnection.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/sources/Mainer.cpp
         ${PROTO_GENERATED_SOURCES}
         ${PROTO_GENERATED_GRPC_SOURCES})
 

@@ -2,31 +2,20 @@
 // Created by chastikov on 18.01.2021.
 //
 
-#ifndef BLOCKCHAIN_BLOCKHAIN_HPP
-#define BLOCKCHAIN_BLOCKHAIN_HPP
+#ifndef BLOCKCHAIN_BLOCKCHAIN_HPP
+#define BLOCKCHAIN_BLOCKCHAIN_HPP
+
+//local files
+#include "Transac_struct.hpp"
 
 // c++ header
 #include <list>
 #include <iterator>
-#include <string>
 #include <shared_mutex>
 
 // PicoSHA2
 #include <picosha2.h>
 
-
-//Можно передавать сам реквест, вопрос как - хороший)
-struct Transac {
-  std::string client_from;
-  std::string client_to ;
-  uint32_t sum;
-  Transac() : client_from(), client_to(), sum(0) {}
-  explicit Transac(const std::string c_f, const std::string c_t, uint32_t s) :
-      client_from(c_f),
-      client_to(c_t),
-      sum(s) {}
-
-};
 
 struct Block {
   unsigned position;
@@ -39,7 +28,6 @@ struct Block {
                         transaction_hash(t_h), prev_block_hash(p_h) {}
 };
 
-
 struct BlockChain {
   std::list <Block> block_chain;
 
@@ -48,8 +36,10 @@ struct BlockChain {
     // которые получает Майнер за формирование блока
     std::string block_hash =
         picosha2::hash256_hex_string(std::string("first block"));
+
     std::string transaction_hash =
         picosha2::hash256_hex_string(std::string("1 token"));
+
     block_chain.emplace_back(0, block_hash, transaction_hash, "");
   }
 
@@ -79,4 +69,4 @@ struct BlockChain {
                              (--it)->block_hash);
   }
 };
-#endif  // BLOCKCHAIN_BLOCKHAIN_HPP
+#endif  // BLOCKCHAIN_BLOCKCHAIN_HPP
