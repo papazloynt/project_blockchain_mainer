@@ -25,15 +25,15 @@ Mainer::Mainer() : db(), b_c() {
   check.detach();
 }
 
-
-
 grpc::Status Mainer::Transaction(grpc::ServerContext* context,
                          const blockchain::TransactionRequest* request,
                          blockchain::TransactionResponse* response) {
     Transac transac_(request->client_from(),
                     request->client_to(),
                     request->sum());
-
+    if (db.ChecksTransac(transac_, sh_mutex) == ERROR){
+      return grpc::Status::CANCELLED;
+    }
     // Транзакция Клиент-клиенту
     Status s = db.TransactionDataBase(transac_, sh_mutex);
     if (s == OK) {

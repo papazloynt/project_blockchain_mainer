@@ -40,7 +40,7 @@ std::string DBConnection::InsertPersonDataBase(const std::string name,
   std::string password =
       picosha2::hash256_hex_string(randomString + name);
 
-  std::string sql_request = "INSERT INTO information (name, password, sum) "
+  std::string sql_request = "INSERT INTO " + name_table + " (name, password, sum) "
                             "VALUES ("
                             "'" + name + "',"
                             " '" + password + "',"
@@ -58,19 +58,44 @@ std::string DBConnection::InsertPersonDataBase(const std::string name,
   return password;
 }
 
+int callback_checks(void* NotUsed, int args, char** argv, char** azColName){
+  return 1;
+}
+
+Status DBConnection::ChecksTransac(const Transac& tr, std::shared_mutex& mutex_) {
+  std::string sql_request_balance = "SELECT name, sum FROM " + name_table +
+                                    " WHERE name='" + tr.client_from + "' and "
+                                    "sum>" + std::to_string(tr.sum);
+
+  std::string sql_request_exist = "SELECT name FROM " + name_table +
+                                    " WHERE name='" + tr.client_to;
+
+  std::shared_lock<std::shared_mutex> lock(mutex_);
+  int rc1 = sqlite3_exec(db, sql_request_balance.c_str(), callback_checks,
+                        NULL, NULL);
+  int rc2 = sqlite3_exec(db, sql_request_balance.c_str(), callback_checks,
+                        NULL, NULL);
+  lock.unlock();
+
+  if ((rc1 == rc2) && ( rc1 == 0)) {
+    return ERROR;
+  }
+  return OK;
+}
+
+
 
 Status DBConnection::TransactionDataBase(const Transac& tr, std::shared_mutex& mutex_) {
-  //А что если такого человека нету?
-
   //У кого минус
-  std::string sql_minus = "UPDATE information SET "
+  std::string sql_minus = "UPDATE " + name_table + " SET "
                           "sum=sum-" + std::to_string(tr.sum) +
                           " WHERE name='" + tr.client_from +"'";
 
   //У кого плюс
-  std::string sql_plus = "UPDATE information SET "
+  std::string sql_plus = "UPDATE " + name_table + " SET "
                          "sum=sum+" + std::to_string(tr.sum) +
                          " WHERE name='" + tr.client_to +"'";
+  err = nullptr;
   char* err_h = nullptr;
 
   std::unique_lock<std::shared_mutex> lock(mutex_);
@@ -79,36 +104,35 @@ Status DBConnection::TransactionDataBase(const Transac& tr, std::shared_mutex& m
   lock.unlock();
 
   if (err != nullptr && err_h != nullptr) {
-    return OK;
+    return ERROR;
   }
-  return ERROR;
+  return OK;
 }
 
 Status DBConnection::AddTokens(const unsigned s, const std::string& name, std::shared_mutex& mutex_) {
   std::string sql_plus =
-      "UPDATE information SET "
-      "sum=sum+" +
-      std::to_string(s) + " WHERE name='" + name + "'";
-
+      "UPDATE " + name_table + " SET "
+      "sum=sum+" + std::to_string(s) +
+      " WHERE name='" + name + "'";
+  err = nullptr;
   std::unique_lock<std::shared_mutex> lock(mutex_);
   sqlite3_exec(db, sql_plus.c_str(), NULL, NULL, &err);
   lock.unlock();
 
   if (err != nullptr) {
-    return OK;
+    return ERROR;
   }
-  return ERROR;
+  return OK;
 }
 
 int callback_auth(void* NotUsed, int args, char** argv, char** azColName){
   return 1;
 }
 
-// shared_ptr сделать в execute
 std::string DBConnection::Authorization(const std::string& login,
                           const std::string& password,
                           std::shared_mutex& mutex_){
-  std::string sql_request = "SELECT name, sum FROM information WHERE "
+  std::string sql_request = "SELECT name, sum FROM " + name_table + " WHERE "
                            "name='" + login + "' and "
                            "password='" + password + "'";
   std::shared_lock<std::shared_mutex> lock(mutex_);
@@ -116,9 +140,8 @@ std::string DBConnection::Authorization(const std::string& login,
   lock.unlock();
   if (rc == 0) {
      return "Wrong login or password! Please try again.";
-  } else {
-    return "Welcome to the system " + login;
   }
+    return "Welcome to the system " + login;
 }
 
 
@@ -134,7 +157,7 @@ std::string DBConnection::Balance(const std::string& login, std::shared_mutex& m
     std::string sql_request = "SELECT name, sum FROM "
                               + name_table + " where "
                               "name='" + login + "'";
-    int sum;
+    uint32_t sum = 0;
 
     std::shared_lock<std::shared_mutex> lock(mutex_);
     int rc = sqlite3_exec(db, sql_request.c_str(), callback_balance,

@@ -44,8 +44,10 @@ public:
   //Вставаляем пользователя
   std::string InsertPersonDataBase(const std::string name,
                                    std::shared_mutex& mutex_);
+  //Проверка
+  Status ChecksTransac(const Transac& tr, std::shared_mutex& mutex_);
 
-  // Транзакция
+  //Транзакция
   Status TransactionDataBase(const Transac& tr, std::shared_mutex& mutex_);
 
   //Добавление токенов на баланс
