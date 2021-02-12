@@ -1,9 +1,7 @@
-//
-// Created by chastikov on 18.01.2021.
-//
+// Copyright 2020 Chastikov Alexander cool.chastikov53@gmail.com
 
-#ifndef BLOCKCHAIN_BLOCKCHAIN_HPP
-#define BLOCKCHAIN_BLOCKCHAIN_HPP
+#ifndef INCLUDE_BLOCKCHAIN_HPP_
+#define INCLUDE_BLOCKCHAIN_HPP_
 
 //local files
 #include "Transac_struct.hpp"
@@ -12,6 +10,7 @@
 #include <list>
 #include <iterator>
 #include <shared_mutex>
+#include <string>
 
 // PicoSHA2
 #include <picosha2.h>
@@ -69,4 +68,4 @@ struct BlockChain {
                              (--it)->block_hash);
   }
 };
-#endif  // BLOCKCHAIN_BLOCKCHAIN_HPP
+#endif  // INCLUDE_BLOCKCHAIN_HPP_

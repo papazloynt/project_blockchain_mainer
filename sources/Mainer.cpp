@@ -1,6 +1,4 @@
-//
-// Created by chastikov on 10.02.2021.
-//
+// Copyright 2020 Chastikov Alexander cool.chastikov53@gmail.com
 
 // private files
 #include "Mainer.hpp"

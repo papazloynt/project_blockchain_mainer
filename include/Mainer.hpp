@@ -1,7 +1,7 @@
 // Copyright 2020 Chastikov Alexander cool.chastikov53@gmail.com
 
-#ifndef INCLUDE_SUGGESTIONS_HPP_
-#define INCLUDE_SUGGESTIONS_HPP_
+#ifndef INCLUDE_MAINER_HPP_
+#define INCLUDE_MAINER_HPP_
 
 // private headers
 #include "DBConnection.hpp"
@@ -10,6 +10,7 @@
 
 // c++ headers
 #include <chrono>
+#include <string>
 
 // gRPC
 #include <grpcpp/grpcpp.h>
@@ -20,6 +21,7 @@ class Mainer : public blockchain::Blockchain::Service {
   Mainer();
   std::shared_mutex sh_mutex;
   std::string name;
+
  private:
   DBConnection db;
   BlockChain b_c;
@@ -47,4 +49,4 @@ class Mainer : public blockchain::Blockchain::Service {
   void HackerProtection();
 };
 
-#endif  // INCLUDE_SUGGESTIONS_HPP_
+#endif  // INCLUDE_MAINER_HPP_
