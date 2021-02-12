@@ -30,9 +30,9 @@ Mainer::Mainer() : db(), b_c() {
 grpc::Status Mainer::Transaction(grpc::ServerContext* context,
                          const blockchain::TransactionRequest* request,
                          blockchain::TransactionResponse* response) {
-    Transac transac_(request->req().client_from(),
-                    request->req().client_to(),
-                    request->req().sum());
+    Transac transac_(request->client_from(),
+                    request->client_to(),
+                    request->sum());
 
     // Транзакция Клиент-клиенту
     Status s = db.TransactionDataBase(transac_, sh_mutex);
@@ -61,6 +61,9 @@ grpc::Status Mainer::Registration(grpc::ServerContext* context,
   std::string password =
       db.InsertPersonDataBase(login, sh_mutex);
   *response->mutable_password() = password;
+  if (password == "NAME_ERROR"){
+    return grpc::Status::CANCELLED;
+  }
   return grpc::Status::OK;
 }
 

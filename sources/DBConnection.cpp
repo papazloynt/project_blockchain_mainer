@@ -53,6 +53,7 @@ std::string DBConnection::InsertPersonDataBase(const std::string name,
 
   if ( rc != SQLITE_OK) {
     std::cout << "error:" << err << std::endl;
+    password = "NAME_ERROR";
   }
   return password;
 }

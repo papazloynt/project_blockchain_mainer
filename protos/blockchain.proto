@@ -38,14 +38,11 @@ service Blockchain{
 }
 
 // Transac
-message TransactionStruct {
+
+message TransactionRequest {
   string client_from = 1;
   string client_to = 2;
   uint32 sum = 3;
-}
-
-message TransactionRequest {
-    TransactionStruct req = 1;
 }
 
 message TransactionResponse{

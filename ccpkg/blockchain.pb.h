@@ -48,7 +48,7 @@ struct TableStruct_blockchain_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[11]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[10]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -86,9 +86,6 @@ extern TransactionRequestDefaultTypeInternal _TransactionRequest_default_instanc
 class TransactionResponse;
 class TransactionResponseDefaultTypeInternal;
 extern TransactionResponseDefaultTypeInternal _TransactionResponse_default_instance_;
-class TransactionStruct;
-class TransactionStructDefaultTypeInternal;
-extern TransactionStructDefaultTypeInternal _TransactionStruct_default_instance_;
 }  // namespace blockchain
 PROTOBUF_NAMESPACE_OPEN
 template<> ::blockchain::AddMoneyRequest* Arena::CreateMaybeMessage<::blockchain::AddMoneyRequest>(Arena*);
@@ -101,29 +98,28 @@ template<> ::blockchain::RegistrationRequest* Arena::CreateMaybeMessage<::blockc
 template<> ::blockchain::RegistrationResponse* Arena::CreateMaybeMessage<::blockchain::RegistrationResponse>(Arena*);
 template<> ::blockchain::TransactionRequest* Arena::CreateMaybeMessage<::blockchain::TransactionRequest>(Arena*);
 template<> ::blockchain::TransactionResponse* Arena::CreateMaybeMessage<::blockchain::TransactionResponse>(Arena*);
-template<> ::blockchain::TransactionStruct* Arena::CreateMaybeMessage<::blockchain::TransactionStruct>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace blockchain {
 
 // ===================================================================
 
-class TransactionStruct PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:blockchain.TransactionStruct) */ {
+class TransactionRequest PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:blockchain.TransactionRequest) */ {
  public:
-  inline TransactionStruct() : TransactionStruct(nullptr) {};
-  virtual ~TransactionStruct();
+  inline TransactionRequest() : TransactionRequest(nullptr) {};
+  virtual ~TransactionRequest();
 
-  TransactionStruct(const TransactionStruct& from);
-  TransactionStruct(TransactionStruct&& from) noexcept
-    : TransactionStruct() {
+  TransactionRequest(const TransactionRequest& from);
+  TransactionRequest(TransactionRequest&& from) noexcept
+    : TransactionRequest() {
     *this = ::std::move(from);
   }
 
-  inline TransactionStruct& operator=(const TransactionStruct& from) {
+  inline TransactionRequest& operator=(const TransactionRequest& from) {
     CopyFrom(from);
     return *this;
   }
-  inline TransactionStruct& operator=(TransactionStruct&& from) noexcept {
+  inline TransactionRequest& operator=(TransactionRequest&& from) noexcept {
     if (GetArena() == from.GetArena()) {
       if (this != &from) InternalSwap(&from);
     } else {
@@ -141,20 +137,20 @@ class TransactionStruct PROTOBUF_FINAL :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return GetMetadataStatic().reflection;
   }
-  static const TransactionStruct& default_instance();
+  static const TransactionRequest& default_instance();
 
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const TransactionStruct* internal_default_instance() {
-    return reinterpret_cast<const TransactionStruct*>(
-               &_TransactionStruct_default_instance_);
+  static inline const TransactionRequest* internal_default_instance() {
+    return reinterpret_cast<const TransactionRequest*>(
+               &_TransactionRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     0;
 
-  friend void swap(TransactionStruct& a, TransactionStruct& b) {
+  friend void swap(TransactionRequest& a, TransactionRequest& b) {
     a.Swap(&b);
   }
-  inline void Swap(TransactionStruct* other) {
+  inline void Swap(TransactionRequest* other) {
     if (other == this) return;
     if (GetArena() == other->GetArena()) {
       InternalSwap(other);
@@ -162,7 +158,7 @@ class TransactionStruct PROTOBUF_FINAL :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(TransactionStruct* other) {
+  void UnsafeArenaSwap(TransactionRequest* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -170,17 +166,17 @@ class TransactionStruct PROTOBUF_FINAL :
 
   // implements Message ----------------------------------------------
 
-  inline TransactionStruct* New() const final {
-    return CreateMaybeMessage<TransactionStruct>(nullptr);
+  inline TransactionRequest* New() const final {
+    return CreateMaybeMessage<TransactionRequest>(nullptr);
   }
 
-  TransactionStruct* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<TransactionStruct>(arena);
+  TransactionRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TransactionRequest>(arena);
   }
   void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
   void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const TransactionStruct& from);
-  void MergeFrom(const TransactionStruct& from);
+  void CopyFrom(const TransactionRequest& from);
+  void MergeFrom(const TransactionRequest& from);
   PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
   bool IsInitialized() const final;
 
@@ -194,13 +190,13 @@ class TransactionStruct PROTOBUF_FINAL :
   inline void SharedCtor();
   inline void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(TransactionStruct* other);
+  void InternalSwap(TransactionRequest* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "blockchain.TransactionStruct";
+    return "blockchain.TransactionRequest";
   }
   protected:
-  explicit TransactionStruct(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  explicit TransactionRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
   private:
   static void ArenaDtor(void* object);
   inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
@@ -283,7 +279,7 @@ class TransactionStruct PROTOBUF_FINAL :
   void _internal_set_sum(::PROTOBUF_NAMESPACE_ID::uint32 value);
   public:
 
-  // @@protoc_insertion_point(class_scope:blockchain.TransactionStruct)
+  // @@protoc_insertion_point(class_scope:blockchain.TransactionRequest)
  private:
   class _Internal;
 
@@ -293,152 +289,6 @@ class TransactionStruct PROTOBUF_FINAL :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr client_from_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr client_to_;
   ::PROTOBUF_NAMESPACE_ID::uint32 sum_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_blockchain_2eproto;
-};
-// -------------------------------------------------------------------
-
-class TransactionRequest PROTOBUF_FINAL :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:blockchain.TransactionRequest) */ {
- public:
-  inline TransactionRequest() : TransactionRequest(nullptr) {};
-  virtual ~TransactionRequest();
-
-  TransactionRequest(const TransactionRequest& from);
-  TransactionRequest(TransactionRequest&& from) noexcept
-    : TransactionRequest() {
-    *this = ::std::move(from);
-  }
-
-  inline TransactionRequest& operator=(const TransactionRequest& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline TransactionRequest& operator=(TransactionRequest&& from) noexcept {
-    if (GetArena() == from.GetArena()) {
-      if (this != &from) InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return GetMetadataStatic().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return GetMetadataStatic().reflection;
-  }
-  static const TransactionRequest& default_instance();
-
-  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const TransactionRequest* internal_default_instance() {
-    return reinterpret_cast<const TransactionRequest*>(
-               &_TransactionRequest_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    1;
-
-  friend void swap(TransactionRequest& a, TransactionRequest& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(TransactionRequest* other) {
-    if (other == this) return;
-    if (GetArena() == other->GetArena()) {
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(TransactionRequest* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  inline TransactionRequest* New() const final {
-    return CreateMaybeMessage<TransactionRequest>(nullptr);
-  }
-
-  TransactionRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<TransactionRequest>(arena);
-  }
-  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const TransactionRequest& from);
-  void MergeFrom(const TransactionRequest& from);
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  inline void SharedCtor();
-  inline void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(TransactionRequest* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "blockchain.TransactionRequest";
-  }
-  protected:
-  explicit TransactionRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  private:
-  static void ArenaDtor(void* object);
-  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  public:
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  private:
-  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
-    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_blockchain_2eproto);
-    return ::descriptor_table_blockchain_2eproto.file_level_metadata[kIndexInFileMessages];
-  }
-
-  public:
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kReqFieldNumber = 1,
-  };
-  // .blockchain.TransactionStruct req = 1;
-  bool has_req() const;
-  private:
-  bool _internal_has_req() const;
-  public:
-  void clear_req();
-  const ::blockchain::TransactionStruct& req() const;
-  ::blockchain::TransactionStruct* release_req();
-  ::blockchain::TransactionStruct* mutable_req();
-  void set_allocated_req(::blockchain::TransactionStruct* req);
-  private:
-  const ::blockchain::TransactionStruct& _internal_req() const;
-  ::blockchain::TransactionStruct* _internal_mutable_req();
-  public:
-  void unsafe_arena_set_allocated_req(
-      ::blockchain::TransactionStruct* req);
-  ::blockchain::TransactionStruct* unsafe_arena_release_req();
-
-  // @@protoc_insertion_point(class_scope:blockchain.TransactionRequest)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  ::blockchain::TransactionStruct* req_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_blockchain_2eproto;
 };
@@ -486,7 +336,7 @@ class TransactionResponse PROTOBUF_FINAL :
                &_TransactionResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    1;
 
   friend void swap(TransactionResponse& a, TransactionResponse& b) {
     a.Swap(&b);
@@ -639,7 +489,7 @@ class RegistrationRequest PROTOBUF_FINAL :
                &_RegistrationRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    2;
 
   friend void swap(RegistrationRequest& a, RegistrationRequest& b) {
     a.Swap(&b);
@@ -792,7 +642,7 @@ class RegistrationResponse PROTOBUF_FINAL :
                &_RegistrationResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    3;
 
   friend void swap(RegistrationResponse& a, RegistrationResponse& b) {
     a.Swap(&b);
@@ -945,7 +795,7 @@ class AuthorizationRequest PROTOBUF_FINAL :
                &_AuthorizationRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    4;
 
   friend void swap(AuthorizationRequest& a, AuthorizationRequest& b) {
     a.Swap(&b);
@@ -1125,7 +975,7 @@ class AuthorizationResponse PROTOBUF_FINAL :
                &_AuthorizationResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    5;
 
   friend void swap(AuthorizationResponse& a, AuthorizationResponse& b) {
     a.Swap(&b);
@@ -1278,7 +1128,7 @@ class AddMoneyRequest PROTOBUF_FINAL :
                &_AddMoneyRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    6;
 
   friend void swap(AddMoneyRequest& a, AddMoneyRequest& b) {
     a.Swap(&b);
@@ -1442,7 +1292,7 @@ class AddMoneyResponse PROTOBUF_FINAL :
                &_AddMoneyResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    7;
 
   friend void swap(AddMoneyResponse& a, AddMoneyResponse& b) {
     a.Swap(&b);
@@ -1595,7 +1445,7 @@ class InfoBalanceRequest PROTOBUF_FINAL :
                &_InfoBalanceRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    8;
 
   friend void swap(InfoBalanceRequest& a, InfoBalanceRequest& b) {
     a.Swap(&b);
@@ -1748,7 +1598,7 @@ class InfoBalanceResponse PROTOBUF_FINAL :
                &_InfoBalanceResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    9;
 
   friend void swap(InfoBalanceResponse& a, InfoBalanceResponse& b) {
     a.Swap(&b);
@@ -1866,60 +1716,60 @@ class InfoBalanceResponse PROTOBUF_FINAL :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
-// TransactionStruct
+// TransactionRequest
 
 // string client_from = 1;
-inline void TransactionStruct::clear_client_from() {
+inline void TransactionRequest::clear_client_from() {
   client_from_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
-inline const std::string& TransactionStruct::client_from() const {
-  // @@protoc_insertion_point(field_get:blockchain.TransactionStruct.client_from)
+inline const std::string& TransactionRequest::client_from() const {
+  // @@protoc_insertion_point(field_get:blockchain.TransactionRequest.client_from)
   return _internal_client_from();
 }
-inline void TransactionStruct::set_client_from(const std::string& value) {
+inline void TransactionRequest::set_client_from(const std::string& value) {
   _internal_set_client_from(value);
-  // @@protoc_insertion_point(field_set:blockchain.TransactionStruct.client_from)
+  // @@protoc_insertion_point(field_set:blockchain.TransactionRequest.client_from)
 }
-inline std::string* TransactionStruct::mutable_client_from() {
-  // @@protoc_insertion_point(field_mutable:blockchain.TransactionStruct.client_from)
+inline std::string* TransactionRequest::mutable_client_from() {
+  // @@protoc_insertion_point(field_mutable:blockchain.TransactionRequest.client_from)
   return _internal_mutable_client_from();
 }
-inline const std::string& TransactionStruct::_internal_client_from() const {
+inline const std::string& TransactionRequest::_internal_client_from() const {
   return client_from_.Get();
 }
-inline void TransactionStruct::_internal_set_client_from(const std::string& value) {
+inline void TransactionRequest::_internal_set_client_from(const std::string& value) {
   
   client_from_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
 }
-inline void TransactionStruct::set_client_from(std::string&& value) {
+inline void TransactionRequest::set_client_from(std::string&& value) {
   
   client_from_.Set(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:blockchain.TransactionStruct.client_from)
+  // @@protoc_insertion_point(field_set_rvalue:blockchain.TransactionRequest.client_from)
 }
-inline void TransactionStruct::set_client_from(const char* value) {
+inline void TransactionRequest::set_client_from(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   client_from_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
               GetArena());
-  // @@protoc_insertion_point(field_set_char:blockchain.TransactionStruct.client_from)
+  // @@protoc_insertion_point(field_set_char:blockchain.TransactionRequest.client_from)
 }
-inline void TransactionStruct::set_client_from(const char* value,
+inline void TransactionRequest::set_client_from(const char* value,
     size_t size) {
   
   client_from_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:blockchain.TransactionStruct.client_from)
+  // @@protoc_insertion_point(field_set_pointer:blockchain.TransactionRequest.client_from)
 }
-inline std::string* TransactionStruct::_internal_mutable_client_from() {
+inline std::string* TransactionRequest::_internal_mutable_client_from() {
   
   return client_from_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
-inline std::string* TransactionStruct::release_client_from() {
-  // @@protoc_insertion_point(field_release:blockchain.TransactionStruct.client_from)
+inline std::string* TransactionRequest::release_client_from() {
+  // @@protoc_insertion_point(field_release:blockchain.TransactionRequest.client_from)
   return client_from_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
-inline void TransactionStruct::set_allocated_client_from(std::string* client_from) {
+inline void TransactionRequest::set_allocated_client_from(std::string* client_from) {
   if (client_from != nullptr) {
     
   } else {
@@ -1927,16 +1777,16 @@ inline void TransactionStruct::set_allocated_client_from(std::string* client_fro
   }
   client_from_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), client_from,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:blockchain.TransactionStruct.client_from)
+  // @@protoc_insertion_point(field_set_allocated:blockchain.TransactionRequest.client_from)
 }
-inline std::string* TransactionStruct::unsafe_arena_release_client_from() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:blockchain.TransactionStruct.client_from)
+inline std::string* TransactionRequest::unsafe_arena_release_client_from() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:blockchain.TransactionRequest.client_from)
   GOOGLE_DCHECK(GetArena() != nullptr);
   
   return client_from_.UnsafeArenaRelease(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       GetArena());
 }
-inline void TransactionStruct::unsafe_arena_set_allocated_client_from(
+inline void TransactionRequest::unsafe_arena_set_allocated_client_from(
     std::string* client_from) {
   GOOGLE_DCHECK(GetArena() != nullptr);
   if (client_from != nullptr) {
@@ -1946,61 +1796,61 @@ inline void TransactionStruct::unsafe_arena_set_allocated_client_from(
   }
   client_from_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       client_from, GetArena());
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:blockchain.TransactionStruct.client_from)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:blockchain.TransactionRequest.client_from)
 }
 
 // string client_to = 2;
-inline void TransactionStruct::clear_client_to() {
+inline void TransactionRequest::clear_client_to() {
   client_to_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
-inline const std::string& TransactionStruct::client_to() const {
-  // @@protoc_insertion_point(field_get:blockchain.TransactionStruct.client_to)
+inline const std::string& TransactionRequest::client_to() const {
+  // @@protoc_insertion_point(field_get:blockchain.TransactionRequest.client_to)
   return _internal_client_to();
 }
-inline void TransactionStruct::set_client_to(const std::string& value) {
+inline void TransactionRequest::set_client_to(const std::string& value) {
   _internal_set_client_to(value);
-  // @@protoc_insertion_point(field_set:blockchain.TransactionStruct.client_to)
+  // @@protoc_insertion_point(field_set:blockchain.TransactionRequest.client_to)
 }
-inline std::string* TransactionStruct::mutable_client_to() {
-  // @@protoc_insertion_point(field_mutable:blockchain.TransactionStruct.client_to)
+inline std::string* TransactionRequest::mutable_client_to() {
+  // @@protoc_insertion_point(field_mutable:blockchain.TransactionRequest.client_to)
   return _internal_mutable_client_to();
 }
-inline const std::string& TransactionStruct::_internal_client_to() const {
+inline const std::string& TransactionRequest::_internal_client_to() const {
   return client_to_.Get();
 }
-inline void TransactionStruct::_internal_set_client_to(const std::string& value) {
+inline void TransactionRequest::_internal_set_client_to(const std::string& value) {
   
   client_to_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
 }
-inline void TransactionStruct::set_client_to(std::string&& value) {
+inline void TransactionRequest::set_client_to(std::string&& value) {
   
   client_to_.Set(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:blockchain.TransactionStruct.client_to)
+  // @@protoc_insertion_point(field_set_rvalue:blockchain.TransactionRequest.client_to)
 }
-inline void TransactionStruct::set_client_to(const char* value) {
+inline void TransactionRequest::set_client_to(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   client_to_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
               GetArena());
-  // @@protoc_insertion_point(field_set_char:blockchain.TransactionStruct.client_to)
+  // @@protoc_insertion_point(field_set_char:blockchain.TransactionRequest.client_to)
 }
-inline void TransactionStruct::set_client_to(const char* value,
+inline void TransactionRequest::set_client_to(const char* value,
     size_t size) {
   
   client_to_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
       reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:blockchain.TransactionStruct.client_to)
+  // @@protoc_insertion_point(field_set_pointer:blockchain.TransactionRequest.client_to)
 }
-inline std::string* TransactionStruct::_internal_mutable_client_to() {
+inline std::string* TransactionRequest::_internal_mutable_client_to() {
   
   return client_to_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
-inline std::string* TransactionStruct::release_client_to() {
-  // @@protoc_insertion_point(field_release:blockchain.TransactionStruct.client_to)
+inline std::string* TransactionRequest::release_client_to() {
+  // @@protoc_insertion_point(field_release:blockchain.TransactionRequest.client_to)
   return client_to_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
-inline void TransactionStruct::set_allocated_client_to(std::string* client_to) {
+inline void TransactionRequest::set_allocated_client_to(std::string* client_to) {
   if (client_to != nullptr) {
     
   } else {
@@ -2008,16 +1858,16 @@ inline void TransactionStruct::set_allocated_client_to(std::string* client_to) {
   }
   client_to_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), client_to,
       GetArena());
-  // @@protoc_insertion_point(field_set_allocated:blockchain.TransactionStruct.client_to)
+  // @@protoc_insertion_point(field_set_allocated:blockchain.TransactionRequest.client_to)
 }
-inline std::string* TransactionStruct::unsafe_arena_release_client_to() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:blockchain.TransactionStruct.client_to)
+inline std::string* TransactionRequest::unsafe_arena_release_client_to() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:blockchain.TransactionRequest.client_to)
   GOOGLE_DCHECK(GetArena() != nullptr);
   
   return client_to_.UnsafeArenaRelease(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       GetArena());
 }
-inline void TransactionStruct::unsafe_arena_set_allocated_client_to(
+inline void TransactionRequest::unsafe_arena_set_allocated_client_to(
     std::string* client_to) {
   GOOGLE_DCHECK(GetArena() != nullptr);
   if (client_to != nullptr) {
@@ -2027,112 +1877,27 @@ inline void TransactionStruct::unsafe_arena_set_allocated_client_to(
   }
   client_to_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       client_to, GetArena());
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:blockchain.TransactionStruct.client_to)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:blockchain.TransactionRequest.client_to)
 }
 
 // uint32 sum = 3;
-inline void TransactionStruct::clear_sum() {
+inline void TransactionRequest::clear_sum() {
   sum_ = 0u;
 }
-inline ::PROTOBUF_NAMESPACE_ID::uint32 TransactionStruct::_internal_sum() const {
+inline ::PROTOBUF_NAMESPACE_ID::uint32 TransactionRequest::_internal_sum() const {
   return sum_;
 }
-inline ::PROTOBUF_NAMESPACE_ID::uint32 TransactionStruct::sum() const {
-  // @@protoc_insertion_point(field_get:blockchain.TransactionStruct.sum)
+inline ::PROTOBUF_NAMESPACE_ID::uint32 TransactionRequest::sum() const {
+  // @@protoc_insertion_point(field_get:blockchain.TransactionRequest.sum)
   return _internal_sum();
 }
-inline void TransactionStruct::_internal_set_sum(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+inline void TransactionRequest::_internal_set_sum(::PROTOBUF_NAMESPACE_ID::uint32 value) {
   
   sum_ = value;
 }
-inline void TransactionStruct::set_sum(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+inline void TransactionRequest::set_sum(::PROTOBUF_NAMESPACE_ID::uint32 value) {
   _internal_set_sum(value);
-  // @@protoc_insertion_point(field_set:blockchain.TransactionStruct.sum)
-}
-
-// -------------------------------------------------------------------
-
-// TransactionRequest
-
-// .blockchain.TransactionStruct req = 1;
-inline bool TransactionRequest::_internal_has_req() const {
-  return this != internal_default_instance() && req_ != nullptr;
-}
-inline bool TransactionRequest::has_req() const {
-  return _internal_has_req();
-}
-inline void TransactionRequest::clear_req() {
-  if (GetArena() == nullptr && req_ != nullptr) {
-    delete req_;
-  }
-  req_ = nullptr;
-}
-inline const ::blockchain::TransactionStruct& TransactionRequest::_internal_req() const {
-  const ::blockchain::TransactionStruct* p = req_;
-  return p != nullptr ? *p : *reinterpret_cast<const ::blockchain::TransactionStruct*>(
-      &::blockchain::_TransactionStruct_default_instance_);
-}
-inline const ::blockchain::TransactionStruct& TransactionRequest::req() const {
-  // @@protoc_insertion_point(field_get:blockchain.TransactionRequest.req)
-  return _internal_req();
-}
-inline void TransactionRequest::unsafe_arena_set_allocated_req(
-    ::blockchain::TransactionStruct* req) {
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(req_);
-  }
-  req_ = req;
-  if (req) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:blockchain.TransactionRequest.req)
-}
-inline ::blockchain::TransactionStruct* TransactionRequest::release_req() {
-  auto temp = unsafe_arena_release_req();
-  if (GetArena() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-  return temp;
-}
-inline ::blockchain::TransactionStruct* TransactionRequest::unsafe_arena_release_req() {
-  // @@protoc_insertion_point(field_release:blockchain.TransactionRequest.req)
-  
-  ::blockchain::TransactionStruct* temp = req_;
-  req_ = nullptr;
-  return temp;
-}
-inline ::blockchain::TransactionStruct* TransactionRequest::_internal_mutable_req() {
-  
-  if (req_ == nullptr) {
-    auto* p = CreateMaybeMessage<::blockchain::TransactionStruct>(GetArena());
-    req_ = p;
-  }
-  return req_;
-}
-inline ::blockchain::TransactionStruct* TransactionRequest::mutable_req() {
-  // @@protoc_insertion_point(field_mutable:blockchain.TransactionRequest.req)
-  return _internal_mutable_req();
-}
-inline void TransactionRequest::set_allocated_req(::blockchain::TransactionStruct* req) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
-  if (message_arena == nullptr) {
-    delete req_;
-  }
-  if (req) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(req);
-    if (message_arena != submessage_arena) {
-      req = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, req, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  req_ = req;
-  // @@protoc_insertion_point(field_set_allocated:blockchain.TransactionRequest.req)
+  // @@protoc_insertion_point(field_set:blockchain.TransactionRequest.sum)
 }
 
 // -------------------------------------------------------------------
@@ -3004,8 +2769,6 @@ inline void InfoBalanceResponse::unsafe_arena_set_allocated_sum(
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
-// -------------------------------------------------------------------
-
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
