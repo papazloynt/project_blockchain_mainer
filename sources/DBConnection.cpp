@@ -23,7 +23,7 @@ void DBConnection::CreateDataBase(){
   //Создаём таблицу, имя - единственное, повторяться не может
   int rc = sqlite3_exec(db, sql_request.c_str(),
                         NULL, NULL, &err);
-  if ( rc != SQLITE_OK) {
+  if (rc != SQLITE_OK) {
     std::cout << "error:" << err << std::endl;
     exit(1);
   } else {
@@ -51,7 +51,7 @@ std::string DBConnection::InsertPersonDataBase(
                         NULL, NULL, &err);
   lock.unlock();
 
-  if ( rc != SQLITE_OK) {
+  if (rc != SQLITE_OK) {
     std::cout << "error:" << err << std::endl;
     password = "NAME_ERROR";
   }
@@ -81,7 +81,7 @@ Status DBConnection::ChecksTransac(const Transac& tr,
                          callback_checks, NULL, NULL);
   lock.unlock();
 
-  if ((rc1 == rc2) && ( rc1 == 0)) {
+  if ((rc1 == rc2) && (rc1 == 0)) {
     return ERROR;
   }
   return OK;

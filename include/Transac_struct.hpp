@@ -7,7 +7,7 @@
 
 struct Transac{
   std::string client_from;
-  std::string client_to ;
+  std::string client_to;
   uint32_t sum;
   Transac() : client_from(), client_to(), sum(0) {}
   explicit Transac(const std::string c_f,
