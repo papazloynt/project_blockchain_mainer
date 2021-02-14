@@ -27,3 +27,13 @@
 ![alt text](images/transac.png "Транзакция и увеличение баланса")
 
 
+
+####  P.S. Улучшение проекта
+* Чтобы сделать передачу данных защищёнными, необходимо использовать сертификат TSL (Не https). 
+  Вот Некоторая информация об этом:
+    * https://docs.microsoft.com/ru-ru/dotnet/architecture/grpc-for-wcf-developers/channel-credentials
+    * https://github.com/grpc/grpc-go/issues/2164
+*  Шифрование ячеек в БД (SQLite3):
+    * https://habr.com/ru/post/216739/
+
+

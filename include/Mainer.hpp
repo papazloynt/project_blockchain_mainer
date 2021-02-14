@@ -4,7 +4,7 @@
 #define INCLUDE_MAINER_HPP_
 
 // private headers
-#include "DBConnection.hpp"
+#include "DBRepo.hpp"
 #include "Transac_struct.hpp"
 #include "blockchain.hpp"
 
@@ -18,12 +18,12 @@
 
 class Mainer : public blockchain::Blockchain::Service {
  public:
-  Mainer();
-  std::shared_mutex sh_mutex;
+  Mainer(const std::string login, const unsigned time_);
   std::string name;
+  unsigned time;
 
  private:
-  DBConnection db;
+  DBRepo db;
   BlockChain b_c;
 
    grpc::Status Transaction(grpc::ServerContext* context,
@@ -45,8 +45,11 @@ class Mainer : public blockchain::Blockchain::Service {
   grpc::Status InfoBalance(grpc::ServerContext* context,
                         const blockchain::InfoBalanceRequest* request,
                         blockchain::InfoBalanceResponse* response) override;
+
+  grpc::Status RewardMainer();
+
   //Функция проверки на взлом
-  void HackerProtection();
+  [[noreturn]] void HackerProtection() const;
 };
 
 #endif  // INCLUDE_MAINER_HPP_

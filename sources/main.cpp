@@ -13,9 +13,9 @@ using grpc::Server;
 using grpc::ServerBuilder;
 
 
-void RunServer() {
+void RunServer(const std::string& name, const unsigned time) {
   std::string server_address("0.0.0.0:9090");
-  Mainer service;
+  Mainer service(name, time);
 
   grpc::EnableDefaultHealthCheckService(true);
   grpc::reflection::InitProtoReflectionServerBuilderPlugin();
@@ -35,7 +35,17 @@ void RunServer() {
 }
 
 int main(int argc, char** argv) {
-  RunServer();
+  unsigned time;
+  if (argc >= 2){
+    time = atoi((argv[1]));
+  }
+  else{
+    time = 1;
+  }
+  std::string name;
+  std::cout << "Please input your login: " << std::endl;
+  std::cin >> name;
+  RunServer(name, time);
   return 0;
 }
 

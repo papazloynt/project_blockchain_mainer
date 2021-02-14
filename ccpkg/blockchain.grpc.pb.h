@@ -28,6 +28,8 @@
 
 namespace blockchain {
 
+// https необходим
+//
 class Blockchain final {
  public:
   static constexpr char const* service_full_name() {

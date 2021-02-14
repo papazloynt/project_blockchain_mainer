@@ -4,6 +4,8 @@ package blockchain;
 
 import "google/api/annotations.proto";
 
+//https необходим
+
 service Blockchain{
   rpc Transaction(TransactionRequest) returns (TransactionResponse) {
     option (google.api.http) = {

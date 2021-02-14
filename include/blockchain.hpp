@@ -29,6 +29,7 @@ struct Block {
 
 struct BlockChain {
   std::list <Block> block_chain;
+  std::shared_mutex mutex_;
 
   BlockChain() {
     // Первый блок - количество токенов,
@@ -39,7 +40,7 @@ struct BlockChain {
     std::string transaction_hash =
         picosha2::hash256_hex_string(std::string("1 token"));
 
-    block_chain.emplace_back(0, block_hash, transaction_hash, "");
+    block_chain.emplace_front(0, block_hash, transaction_hash, "");
   }
 
   BlockChain(const BlockChain& b) : block_chain(b.block_chain) {}
@@ -51,7 +52,7 @@ struct BlockChain {
     return *this;
   }
 
-  void add_block(const Transac& info, std::shared_mutex& mutex_){
+  void add_block(const Transac& info){
     std::string transaction_hash =
         picosha2::hash256_hex_string(info.client_from +
                                      info.client_to +
@@ -61,11 +62,11 @@ struct BlockChain {
                                      transaction_hash);
     std::unique_lock<std::shared_mutex> lock(mutex_);
 
-    std::list<Block>::iterator it = block_chain.end();
-    block_chain.emplace_back(block_chain.size(),
+    std::list<Block>::iterator it = block_chain.begin();
+    block_chain.emplace_front(block_chain.size(),
                              block_hash,
                              transaction_hash,
-                             (--it)->block_hash);
+                             it->block_hash);
   }
 };
 #endif  // INCLUDE_BLOCKCHAIN_HPP_
