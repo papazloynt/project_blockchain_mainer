@@ -10,7 +10,7 @@
 // PicoSHA2
 #include <picosha2.h>
 
-void DBRepo::CreateDataBase(){
+Status DBRepo::CreateDataBase(){
   std::string sql_request = "CREATE TABLE IF NOT EXISTS information"
                             "(name TEXT NOT NULL,"
                             "password TEXT NOT NULL,"
@@ -21,11 +21,9 @@ void DBRepo::CreateDataBase(){
   int rc = sqlite3_exec(db, sql_request.c_str(),
                         NULL, NULL, &err);
   if (rc != SQLITE_OK) {
-    std::cerr << "error:" << err << std::endl;
-    std::cerr << "Please rebut system" << std::endl;
-  } else {
-    std::cout << "Table created successfully" << std::endl;
+    return OK;
   }
+    return ERROR;
 }
 
 std::string DBRepo::InsertPersonDataBase(
@@ -47,7 +45,6 @@ std::string DBRepo::InsertPersonDataBase(
                         NULL, NULL, &err);
 
   if (rc != SQLITE_OK) {
-    std::cout << "error:" << err << std::endl;
     password = "NAME_ERROR";
   }
   return password;

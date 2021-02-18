@@ -21,8 +21,10 @@ class Mainer : public blockchain::Blockchain::Service {
   Mainer(const std::string login, const unsigned time_);
   std::string name;
   unsigned time;
+  std::string GetPassword();
 
  private:
+  std::string password;
   DBRepo db;
   BlockChain b_c;
 

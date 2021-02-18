@@ -3,11 +3,16 @@
 #include <grpcpp/grpcpp.h>
 #include <grpcpp/health_check_service_interface.h>
 
+// c++ headers
 #include <iostream>
 #include <memory>
 #include <string>
 
+// private headers
 #include "Mainer.hpp"
+
+// JSON
+#include <nlohmann/json.hpp>
 
 using grpc::Server;
 using grpc::ServerBuilder;
@@ -16,6 +21,11 @@ using grpc::ServerBuilder;
 void RunServer(const std::string& name, const unsigned time) {
   std::string server_address("0.0.0.0:9090");
   Mainer service(name, time);
+
+  std::cout << "Your password: " << service.GetPassword() << std::endl
+            << "Please do not lose it, otherwise "
+               "you will lose access to the wallet."
+            << std::endl;
 
   grpc::EnableDefaultHealthCheckService(true);
   grpc::reflection::InitProtoReflectionServerBuilderPlugin();
@@ -35,17 +45,20 @@ void RunServer(const std::string& name, const unsigned time) {
 }
 
 int main(int argc, char** argv) {
-  unsigned time;
-  if (argc >= 2){
-    time = atoi((argv[1]));
+  std::string path;
+  if (argc >= 2) {
+    path = argv[1];
+  } else {
+    throw std::invalid_argument{"Path is not avaible"};
   }
-  else{
-    time = 1;
-  }
-  std::string name;
-  std::cout << "Please input your login: " << std::endl;
-  std::cin >> name;
-  RunServer(name, time);
+
+  std::ifstream file{path};
+  nlohmann::json data;
+  file >> data;
+  file.close();
+
+  RunServer(data.at("name").get<std::string>(),
+      data.at("time").get<uint32_t>());
   return 0;
 }
 

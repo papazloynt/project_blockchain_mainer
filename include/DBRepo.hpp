@@ -41,7 +41,6 @@ private:
 public:
  //Устанавливаем соединение с БД
  DBRepo() : db(nullptr), err(nullptr) {
-   //обработать вероятность ошибки
     sqlite3_open("DataBase.db", &db);
   }
   //Закрываем соединение с БД
@@ -49,7 +48,7 @@ public:
     sqlite3_close(db);
   }
   //Создаём таблицу
-  void CreateDataBase();
+  Status CreateDataBase();
 
   //Вставаляем пользователя
   std::string InsertPersonDataBase(const std::string name);

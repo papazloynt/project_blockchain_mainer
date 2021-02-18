@@ -35,6 +35,9 @@ find_package(gRPC CONFIG REQUIRED)
 hunter_add_package(Protobuf)
 find_package(Protobuf CONFIG REQUIRED)
 
+hunter_add_package(nlohmann_json)
+find_package(nlohmann_json CONFIG REQUIRED)
+
 # For SQLite3
 find_package(Threads)
 
@@ -137,6 +140,7 @@ target_link_libraries(service_mainer
         protobuf::libprotobuf
         database
         blockchain
+        nlohmann_json::nlohmann_json
         PRIVATE picosha)
 
 # Test

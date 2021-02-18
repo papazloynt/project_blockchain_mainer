@@ -4,20 +4,20 @@
 #include "Mainer.hpp"
 
 
-Mainer::Mainer(const std::string login, const unsigned time_) : name(login), time(time_), db(), b_c()  {
+Mainer::Mainer(const std::string login, const unsigned time_) : name(login), time(time_),
+                                                                password(), db(), b_c()  {
   //Создаём, если не существует
-  db.CreateDataBase();
+  if (db.CreateDataBase() == OK) {
+    //Вставляем пользлвателя
+    password =
+        db.InsertPersonDataBase(name);
 
-  //Вставляем пользлвателя
-  std::string password =
-      db.InsertPersonDataBase(name);
-  std::cout << "Your password: " << password << std::endl
-            << "Please do not lose it, otherwise "
-               "you will lose access to the wallet."
-            << std::endl;
-  //Проверка на хакерство
-  std::thread check(&Mainer::HackerProtection, this);
-  check.detach();
+    //Проверка на хакерство
+    std::thread check(&Mainer::HackerProtection, this);
+    check.detach();
+  } else {
+    throw std::runtime_error("Please rebut system");
+  }
 }
 
 grpc::Status Mainer::Transaction(grpc::ServerContext* context,
@@ -46,10 +46,10 @@ grpc::Status Mainer::Registration(grpc::ServerContext* context,
                           const blockchain::RegistrationRequest* request,
                           blockchain::RegistrationResponse* response) {
   std::string login = request->name();
-  std::string password =
+  std::string pass =
       db.InsertPersonDataBase(login);
-  *response->mutable_password() = password;
-  if (password == "NAME_ERROR"){
+  *response->mutable_password() = pass;
+  if (pass == "NAME_ERROR"){
     return grpc::Status::CANCELLED;
   }
   return grpc::Status::OK;
@@ -59,9 +59,9 @@ grpc::Status Mainer::Authorization(grpc::ServerContext* context,
                            const blockchain::AuthorizationRequest* request,
                            blockchain::AuthorizationResponse* response) {
   std::string login = request->name();
-  std::string password = request->password();
+  std::string pass = request->password();
   *response->mutable_answer() =
-      db.Authorization(login, password);
+      db.Authorization(login, pass);
   return grpc::Status::OK;
 }
 
@@ -100,6 +100,10 @@ grpc::Status Mainer::RewardMainer(){
     return grpc::Status::OK;
   }
     return grpc::Status::CANCELLED;
+}
+
+std::string Mainer::GetPassword(){
+  return password;
 }
 
 [[noreturn]] void Mainer::HackerProtection() const {
